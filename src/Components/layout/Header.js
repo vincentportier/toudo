@@ -23,7 +23,6 @@ export const Header = () => {
   const { setSelectedProject, selectedProject } = useSelectedProjectValue();
   const [showQuickAddTask, setShowQuickAddTask] = useState(false);
   const classes = useStyles();
-  const { user } = useAuthValue();
 
   const handleSignout = () => {
     firebase
@@ -57,9 +56,6 @@ export const Header = () => {
                     onClick={() => setShowQuickAddTask(true)}
                   />
                 </Tooltip>
-              </li>
-              <li>
-                <span>You are logged in as {user.name}</span>
               </li>
               <li>
                 <button onClick={handleSignout}>SIGNOUT</button>
