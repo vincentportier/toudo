@@ -1,0 +1,32 @@
+/* Task */
+
+.task {
+  border-bottom: 1px solid #f1f1f1;
+  padding: 10px 0;
+}
+
+.task__main {
+  display: flex;
+  font-size: 14px;
+  align-items: flex-start;
+  word-break: break-all;
+  min-width: 200px;
+}
+
+.task__settings {
+  display: flex;
+  padding-left: 15px;
+  color: #cacaca;
+  margin-left: auto;
+  cursor: pointer;
+}
+
+.task__details {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 5px;
+  margin-left: 30px;
+  align-items: center;
+  font-size: 12px;
+  font-weight: 300;
+}

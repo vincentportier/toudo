@@ -1,0 +1,41 @@
+/* TOP BAR -------------------------------------------------------------------------------------------------
+----------------------------------------------------------------------------------------------------------------------- */
+
+.top-bar {
+  position: fixed;
+  top: 0;
+  display: flex;
+  background-color: #db4c3f;
+  height: 44px;
+  width: 100%;
+  padding: 0 48px 0 48px;
+  justify-content: center;
+  align-items: center;
+  z-index: 100;
+}
+
+nav {
+  display: flex;
+  width: 100%;
+  height: 100%;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.top-bar__logo {
+  height: 60%;
+}
+
+.top-bar__logo > img {
+  object-fit: contain;
+  height: 100%;
+}
+
+.top-bar__settings {
+  color: white;
+}
+
+.top-bar__settings > ul {
+  display: flex;
+  list-style: none;
+}

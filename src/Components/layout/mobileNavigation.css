@@ -1,0 +1,43 @@
+.mobile-navigation {
+  position: fixed;
+  display: flex;
+  justify-content: space-evenly;
+  height: 60px;
+  padding: 10px 5px;
+  width: 100vw;
+  bottom: 0;
+  background: #db4c3f;
+  color: white;
+}
+
+.mobile-navigation__option {
+  width: 100px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+  text-align: center;
+  font-size: 12px;
+  outline: none;
+  cursor: pointer;
+}
+
+.projectDrawer {
+  width: 240px;
+  height: 100%;
+  background: #fafafa;
+  padding-top: 30px;
+  padding-left: 10px;
+  padding-right: 10px;
+  overflow-x: hidden;
+  overflow-y: auto;
+  font-size: 14px;
+  color: #333;
+  user-select: none;
+}
+
+@media screen and (min-width: 800px) {
+  .mobile-navigation {
+    display: none;
+  }
+}

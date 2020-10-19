@@ -1,0 +1,141 @@
+/* SIDEBAR-------------------------------------------------------------------------------------------------
+----------------------------------------------------------------------------------------------------------------------- */
+
+.sidebar {
+  position: fixed;
+  top: 44px;
+  width: 240px;
+  height: calc(100vh - 44px);
+  background: #fafafa;
+  padding-top: 30px;
+  padding-left: 35px;
+  padding-right: 4px;
+  overflow-x: hidden;
+  overflow-y: auto;
+  font-size: 14px;
+  color: #333;
+  user-select: none;
+}
+
+@media only screen and (max-width: 800px) {
+  .sidebar {
+    display: none;
+  }
+}
+
+/* INBOX TODAY UPCOMING FOLDERS */
+
+.mainFolders__list {
+  list-style: none;
+}
+
+.mainFolders__listItem {
+  display: flex;
+  align-items: center;
+  padding: 2px 5px;
+  cursor: pointer;
+  margin-bottom: 5px;
+}
+
+.mainFolders__listItem:focus {
+  outline: none;
+}
+.mainFolders__listItem:hover {
+  background-color: white;
+  transition: background-color 0.1s ease-in;
+}
+
+.active {
+  font-weight: bold;
+  background-color: white;
+  border-radius: 3px;
+  transition: background-color 0.2s ease-in;
+}
+
+/* PROJECTS SECTION */
+
+.sidebar__projects {
+  margin-top: 15px;
+  font-size: 14px;
+}
+
+.projects__header {
+  display: flex;
+  align-items: flex-end;
+  padding: 10px 5px;
+  font-weight: bold;
+  font-size: 16px;
+  border-bottom: 1px solid #f1f1f1;
+  cursor: pointer;
+}
+
+.projects__header:focus {
+  outline: none;
+}
+
+.showProjects {
+  transform: rotate(90deg);
+}
+
+.projects__list {
+  list-style: none;
+}
+
+.projects__listItem {
+  position: relative;
+  display: flex;
+  align-items: center;
+  padding: 8px 5px;
+  cursor: pointer;
+  word-break: break-all;
+}
+
+.project__individualProjectContainer:focus {
+  outline: none;
+}
+
+.projects__listItem:hover {
+  background-color: white;
+  transition: background-color 0.1s ease-in;
+}
+
+.project__delete {
+  position: absolute;
+  padding: 10px;
+  width: 150px;
+  right: 0;
+  font-weight: 400;
+  font-size: 12px;
+  background: white;
+  border: 1px solid #cacaca;
+  z-index: 200;
+  border-radius: 3px;
+}
+.project__deleteButton {
+  margin-top: 5px;
+  margin-right: 5px;
+  border: none;
+  border-radius: 3px;
+  color: white;
+  background: #db4c3f;
+  padding: 5px 7px;
+  cursor: pointer;
+}
+
+/* ADD PROJECTS SECTION */
+
+.sidebar__addProject {
+  display: flex;
+  align-items: center;
+  margin-top: 15px;
+  padding: 0px 3px;
+  cursor: pointer;
+}
+
+.sidebar__addProject:hover {
+  color: #db4c3f;
+}
+
+.sidebar__addProject:focus {
+  outline: none;
+}

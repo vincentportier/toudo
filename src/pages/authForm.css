@@ -1,0 +1,67 @@
+.authForm {
+  display: grid;
+  place-items: center;
+  background: #f8f8f8;
+  min-height: 100vh;
+  overflow: hidden;
+}
+
+.authForm__container {
+  background: white;
+  color: black;
+  border-radius: 5px;
+  width: 300px;
+  padding: 50px;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);
+}
+
+.authForm__container > img {
+  display: block;
+  object-fit: contain;
+  height: 20px;
+  margin-bottom: 20px;
+}
+
+.authForm__label {
+  font-weight: 700;
+  font-size: 13px;
+}
+
+.authForm__input {
+  width: 100%;
+  margin-bottom: 10px;
+  border-radius: 3px;
+  border: 1px solid #ddd;
+  outline: none;
+  padding: 5px;
+}
+
+.authForm__button {
+  width: 100%;
+  border: none;
+  outline: none;
+  margin-top: 20px;
+  margin-bottom: 10px;
+  font-size: 12px;
+  background: #db4c3f;
+  cursor: pointer;
+  color: white;
+  font-weight: 700;
+  padding: 8px;
+  cursor: pointer;
+}
+
+.authForm__text {
+  font-size: 12px;
+}
+
+.authForm__text > a {
+  color: #db4c3f;
+}
+
+.authForm__errorMessage {
+  font-size: 12px;
+  color: #db4c3f;
+  text-align: center;
+  margin: 5px auto 5px auto;
+}

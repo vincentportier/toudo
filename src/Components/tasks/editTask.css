@@ -1,0 +1,39 @@
+/* Edit task form */
+
+.editTask__container {
+  margin-top: 5px;
+}
+
+.submitButtons__saveTask {
+  background: #db4c3f;
+  color: white;
+  padding: 6px 12px 7px;
+  line-height: 17px;
+  margin-right: 10px;
+  cursor: pointer;
+  border: none;
+  outline: none;
+  border-radius: 3px;
+  font-weight: 700;
+  font-size: 13px;
+}
+
+.submitButtons__saveTask:disabled {
+  opacity: 0.3;
+}
+
+.submitButtons__cancel {
+  color: #555;
+  background: none;
+  outline: none;
+  border: none;
+  cursor: pointer;
+  font-size: 13px;
+  padding: 2px 5px;
+  text-decoration: none;
+  white-space: nowrap;
+}
+
+.submitButtons__cancel:hover {
+  text-decoration: underline;
+}

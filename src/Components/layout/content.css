@@ -1,0 +1,235 @@
+/* CONTENT-------------------------------------------------------------------------------------------------
+----------------------------------------------------------------------------------------------------------------------- */
+
+.main-content {
+  position: relative;
+  margin-left: 240px;
+  min-height: 100vh;
+}
+
+@media screen and (max-width: 800px) {
+  .main-content {
+    margin-left: 0;
+    padding-bottom: 80px;
+  }
+}
+
+/* Tasks container */
+
+.tasks__container {
+  position: relative;
+  padding: 80px 55px 60px 55px;
+  margin: 0 auto;
+  max-width: 800px;
+}
+
+.tasks__container--upcoming {
+  position: relative;
+  padding: 0px 55px 60px 55px;
+  margin: 0 auto;
+  max-width: 800px;
+}
+
+.tasks__header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 20px;
+  font-weight: 700;
+  margin-bottom: 10px;
+}
+
+.header__date {
+  color: grey;
+  margin-left: 6px;
+  font-size: 11px;
+  font-weight: 400;
+}
+
+.background-image {
+  display: block;
+  object-fit: contain;
+  width: 200px;
+  margin: auto;
+}
+
+.empty-state {
+  margin-top: 30px;
+  text-align: center;
+}
+.empty-state__header {
+  font-size: 16px;
+  color: #202020;
+}
+
+.empty-state__message {
+  color: #777;
+  font-size: 14px;
+}
+
+/* Overdue tasks */
+
+.tasks__overdue {
+  margin-bottom: 40px;
+}
+
+.overdue__header {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 40px;
+  border-bottom: 1px solid #f1f1f1;
+  padding-bottom: 10px;
+  font-size: 16px;
+}
+
+.overdue__title {
+  font-weight: 700;
+}
+
+.overdue__reschedule {
+  color: #db4c3f;
+  cursor: pointer;
+}
+
+.upcoming__calendar {
+  position: sticky;
+  top: 0;
+  width: 100%;
+  padding: 80px 0 0 0;
+  background-color: white;
+  z-index: 10;
+}
+.upcoming__calendarControls {
+  display: flex;
+
+  align-items: center;
+  margin-bottom: 12px;
+}
+
+.calendarControls__datePickerInput {
+  display: flex;
+  align-items: flex-end;
+  font-size: 20px;
+  font-weight: 700;
+  cursor: pointer;
+}
+
+@media screen and (max-width: 400px) {
+  .upcoming__calendar {
+    padding: 50px 0 0 0;
+  }
+  .calendarControls__datePickerInput {
+    font-size: 11px;
+  }
+}
+
+.calendarControls__changeWeek {
+  margin-right: 8px;
+  margin-left: auto;
+  overflow: hidden;
+}
+
+.changeWeek__arrowLeft {
+  padding: 0 2px;
+  outline: none;
+  border: 1px solid #ddd;
+  border-top-left-radius: 5px;
+  border-bottom-left-radius: 5px;
+  background: none;
+  cursor: pointer;
+}
+.changeWeek__arrowLeft:hover {
+  background: #eeeeee;
+}
+
+.changeWeek__arrowLeft:disabled {
+  opacity: 0.4;
+  background: transparent;
+  cursor: auto;
+}
+.changeWeek__arrowRight {
+  outline: none;
+  border: 1px solid #ddd;
+  border-left: none;
+  border-top-right-radius: 5px;
+  border-bottom-right-radius: 5px;
+  background: none;
+  cursor: pointer;
+}
+.changeWeek__arrowRight:hover {
+  background: #eeeeee;
+}
+
+.changeWeek__arrowRight:disabled {
+  background: transparent;
+  cursor: auto;
+}
+
+.calendarControls__todayButton {
+  outline: none;
+  color: #202020;
+  background: transparent;
+  border: 1px solid #ddd;
+  font-size: 13px;
+  font-weight: 300;
+  border-radius: 5px;
+  padding: 5px 10px;
+  cursor: pointer;
+}
+
+.calendarControls__todayButton:hover {
+  background: #eeeeee;
+}
+
+.upcoming__activeWeek {
+  display: flex;
+  justify-content: space-between;
+  border-bottom: 1px solid #ddd;
+  margin-top: 15px;
+}
+
+.activeWeek__dayButton {
+  position: relative;
+  width: 100%;
+  background: none;
+  border: none;
+  outline: none;
+  padding-top: 5px;
+  padding-bottom: 15px;
+  cursor: pointer;
+}
+.activeWeek__dayButton:hover {
+  background: #eeeeee;
+}
+.activeWeek__dayButton:disabled {
+  background: transparent;
+  cursor: auto;
+}
+
+.dayButton__day {
+  font-size: 12px;
+  font-weight: 300;
+}
+.dayButton__date {
+  font-size: 15px;
+  font-weight: 400;
+}
+
+.dayButton__hasTask {
+  position: absolute;
+  color: #db4c3f;
+  left: 50%;
+
+  bottom: 5%;
+  transform: translate(-50%, -5%);
+}
+.upcoming__dateHeader {
+  margin-top: 28px;
+  font-size: 14px;
+  border-bottom: 1px solid #f0f0f0;
+  line-height: 20px;
+  font-weight: 700;
+  padding: 6px 30px 5px 0;
+  word-wrap: break-word;
+  word-break: break-word;
+}
