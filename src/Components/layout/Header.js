@@ -93,7 +93,11 @@ export const Header = () => {
               </li>
 
               <li onClick={handleOnSettingsMenuOpen}>
-                <Tooltip arrow={true} title="Settings">
+                <Tooltip
+                  arrow={true}
+                  title="Settings"
+                  style={{ cursor: "pointer" }}
+                >
                   <SettingsIcon />
                 </Tooltip>
               </li>
@@ -133,7 +137,7 @@ export const Header = () => {
         >
           <div className={classes.settingsMenu}>
             <div>
-              <span>Welcome {user.name}</span>
+              <span>Welcome {user.gotname}</span>
             </div>
             <div className={classes.separator} />
             <div
