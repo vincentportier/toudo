@@ -137,7 +137,7 @@ export const Header = () => {
         >
           <div className={classes.settingsMenu}>
             <div>
-              <span>Welcome {user.gotname}</span>
+              <span>Welcome {user.name}</span>
             </div>
             <div className={classes.separator} />
             <div

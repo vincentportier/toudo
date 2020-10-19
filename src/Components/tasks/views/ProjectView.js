@@ -5,6 +5,11 @@ import { AddTask } from "../AddTask";
 import { EmptyState } from "../../layout/EmptyState";
 import Task from "../Task";
 import { FilterTasks } from "../../util/FilterTasks";
+import { ProjectSettingsMenu } from "../../projects/ProjectSettingsMenu";
+
+//Icons
+import MoreIcon from "@material-ui/icons/MoreHoriz";
+
 // Context and hooks
 import { useSortTasks } from "../../../Hooks";
 import { useProjectsValue, useSelectedProjectValue } from "../../../Context";
@@ -28,6 +33,7 @@ export const ProjectView = ({
   });
   const [projectName, setProjectName] = useState("");
   const { overdueTasks, currentTasks } = useSortTasks(tasks, orderBy);
+  const [anchorSettingsMenu, setAnchorSettingsMenu] = useState(null);
 
   useEffect(() => {
     let projectName;
@@ -37,6 +43,14 @@ export const ProjectView = ({
       setProjectName(projectName);
     }
   }, [selectedProject, projects]);
+
+  const handleOnSettingsMenuOpen = (event) => {
+    setAnchorSettingsMenu(event.currentTarget);
+  };
+
+  const handleOnSettingsMenuClose = () => {
+    setAnchorSettingsMenu(null);
+  };
 
   const overdueTasksMarkup = (
     <>
@@ -71,7 +85,16 @@ export const ProjectView = ({
     <>
       <div className="tasks__header">
         <span>{projectName}</span>
-        <FilterTasks orderBy={orderBy} setOrderBy={setOrderBy} />
+        <div style={{ display: "flex", flexDirection: "column" }}>
+          <MoreIcon onClick={handleOnSettingsMenuOpen} />
+          <ProjectSettingsMenu
+            open={Boolean(anchorSettingsMenu)}
+            onClose={handleOnSettingsMenuClose}
+            anchorEl={anchorSettingsMenu}
+            keepMounted
+          />
+          <FilterTasks orderBy={orderBy} setOrderBy={setOrderBy} />
+        </div>
       </div>
       {!isLoading && (
         <>
