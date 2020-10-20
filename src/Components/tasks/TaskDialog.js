@@ -2,7 +2,6 @@ import React, { useEffect, useState } from "react";
 import moment from "moment";
 //MUI stuff
 import Dialog from "@material-ui/core/Dialog";
-import TextField from "@material-ui/core/TextField";
 
 //Icons
 import CloseIcon from "@material-ui/icons/Close";
@@ -138,6 +137,7 @@ export const TaskDialog = ({
       });
 
     return () => unsubscribe();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   return (

@@ -8,7 +8,7 @@
 .task__main {
   display: flex;
   font-size: 14px;
-  align-items: flex-start;
+  align-items: center;
   word-break: break-all;
   min-width: 200px;
 }

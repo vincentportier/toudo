@@ -48,6 +48,7 @@ const Task = ({ task }) => {
 
   useEffect(() => {
     setState({ ...state, project: projectId });
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [projectId]);
 
   const handleOpenTaskMenu = (e) => {

@@ -19,7 +19,7 @@ export const useTasks = (selectedProject) => {
   const { userCredentials } = useAuthValue();
   useEffect(() => {
     if (!userCredentials) return;
-    console.log("task hook fired wuth usercred:", userCredentials);
+    console.log("task hook fired with usercred:", userCredentials);
     setIsLoading(true);
     let unsubscribe = db
       .collection("tasks")
@@ -95,8 +95,6 @@ export const useSortTasks = (tasks, orderBy) => {
   const [currentTasks, setCurrentTasks] = useState([]);
 
   useEffect(() => {
-    console.log("sorting hook fired");
-
     let overdueTasks = tasks.filter((task) => {
       const taskMoment = moment(task.date, "MM-DD-YYYY");
       const today = moment().format("MM/DD/YYYY");
@@ -129,4 +127,46 @@ export const useSortTasks = (tasks, orderBy) => {
   }, [tasks, orderBy]);
 
   return { overdueTasks, currentTasks };
+};
+
+export const useArchivedTasks = (selectedProject) => {
+  const [archivedTasks, setArchivedTasks] = useState([]);
+  const { userCredentials } = useAuthValue();
+  const [loadingArchivedTasks, setLoadingArchivedTasks] = useState(false);
+  useEffect(() => {
+    if (!userCredentials) return;
+    console.log("archivedTasks hook fired with usercred:", userCredentials);
+    setLoadingArchivedTasks(true);
+    let unsubscribe = db
+      .collection("tasks")
+      .where("userId", "==", userCredentials.uid)
+      .where("archived", "==", true)
+      .orderBy("createdAt", "desc");
+    if (
+      !selectedProject ||
+      selectedProject === "TODAY" ||
+      selectedProject === "UPCOMING"
+    )
+      return;
+
+    if (!collatedTasksExist(selectedProject)) {
+      unsubscribe = unsubscribe.where("projectId", "==", selectedProject);
+    }
+    if (selectedProject === "INBOX") {
+      unsubscribe = unsubscribe.where("projectId", "==", "INBOX");
+    }
+
+    unsubscribe = unsubscribe.onSnapshot((snapshot) => {
+      const newTasks = snapshot.docs.map((task) => ({
+        taskId: task.id,
+        ...task.data(),
+      }));
+      setArchivedTasks(newTasks);
+      setLoadingArchivedTasks(false);
+    });
+    return () => unsubscribe();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
+
+  return { archivedTasks, loadingArchivedTasks };
 };

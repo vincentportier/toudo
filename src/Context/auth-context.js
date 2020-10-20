@@ -15,7 +15,6 @@ export const AuthProvider = ({ children }) => {
   });
 
   useEffect(() => {
-    console.log("Auth context fired");
     const unsubscribe = firebase.auth().onAuthStateChanged((user) => {
       if (user) {
         db.collection("users")

@@ -117,6 +117,7 @@ export const ProjectSettingsMenu = ({
   useEffect(() => {
     const currentProject = getProject(projects, selectedProject);
     setState({ ...state, project: currentProject });
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [projects, selectedProject]);
 
   const deleteProject = () => {

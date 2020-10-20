@@ -126,14 +126,6 @@ export const Header = () => {
           onClose={handleOnSettingsMenuClose}
           anchorEl={anchorSettingsMenu}
           keepMounted
-          anchorOrigin={{
-            vertical: "bottom",
-            horizontal: "center",
-          }}
-          transformOrigin={{
-            vertical: "top",
-            horizontal: "center",
-          }}
         >
           <div className={classes.settingsMenu}>
             <div>

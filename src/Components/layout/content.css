@@ -46,6 +46,16 @@
   font-weight: 400;
 }
 
+.tasks__showCompletedTasksButton {
+  display: flex;
+  align-items: center;
+  color: grey;
+  margin-top: 20px;
+  font-size: 12px;
+  justify-content: center;
+  cursor: pointer;
+}
+
 .background-image {
   display: block;
   object-fit: contain;

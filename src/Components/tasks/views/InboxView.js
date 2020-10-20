@@ -6,6 +6,9 @@ import { EmptyState } from "../../layout/EmptyState";
 import Task from "../Task";
 import { useSortTasks } from "../../../Hooks";
 import { FilterTasks } from "../../util/FilterTasks";
+import { ArchivedTasks } from "../ArchivedTasks";
+//icons
+import SyncIcon from "@material-ui/icons/Sync";
 
 export const InboxView = ({
   tasks,
@@ -19,6 +22,7 @@ export const InboxView = ({
     date: false,
     priority: false,
   });
+  const [showCompletedTasks, setShowCompletedTasks] = useState(false);
 
   const { overdueTasks, currentTasks } = useSortTasks(tasks, orderBy);
 
@@ -62,7 +66,20 @@ export const InboxView = ({
           {overdueTasks.length > 0 ? overdueTasksMarkup : null}
           {currentTasks.length > 0 ? currentTasksMarkup : null}
           <AddTask showQuickAddTask={false} />
-          {tasks.length === 0 ? <EmptyState /> : null}
+          {tasks.length === 0 && showCompletedTasks === false ? (
+            <EmptyState />
+          ) : null}
+          <div
+            role="button"
+            className="tasks__showCompletedTasksButton"
+            onClick={() => {
+              setShowCompletedTasks(!showCompletedTasks);
+            }}
+          >
+            <SyncIcon style={{ color: "grey", fontSize: 18, marginRight: 5 }} />
+            <span>Show completed tasks</span>
+          </div>
+          {showCompletedTasks && <ArchivedTasks />}
         </>
       )}
     </>

@@ -6,9 +6,11 @@ import { EmptyState } from "../../layout/EmptyState";
 import Task from "../Task";
 import { FilterTasks } from "../../util/FilterTasks";
 import { ProjectSettingsMenu } from "../../projects/ProjectSettingsMenu";
+import { ArchivedTasks } from "../ArchivedTasks";
 
 //Icons
 import MoreIcon from "@material-ui/icons/MoreHoriz";
+import SyncIcon from "@material-ui/icons/Sync";
 
 // Context and hooks
 import { useSortTasks } from "../../../Hooks";
@@ -34,6 +36,7 @@ export const ProjectView = ({
   const [projectName, setProjectName] = useState("");
   const { overdueTasks, currentTasks } = useSortTasks(tasks, orderBy);
   const [anchorSettingsMenu, setAnchorSettingsMenu] = useState(null);
+  const [showCompletedTasks, setShowCompletedTasks] = useState(false);
 
   useEffect(() => {
     let projectName;
@@ -43,6 +46,10 @@ export const ProjectView = ({
       setProjectName(projectName);
     }
   }, [selectedProject, projects]);
+
+  useEffect(() => {
+    setShowCompletedTasks(false);
+  }, [selectedProject]);
 
   const handleOnSettingsMenuOpen = (event) => {
     setAnchorSettingsMenu(event.currentTarget);
@@ -101,7 +108,20 @@ export const ProjectView = ({
           {overdueTasks.length > 0 ? overdueTasksMarkup : null}
           {currentTasks.length > 0 ? currentTasksMarkup : null}
           <AddTask showQuickAddTask={false} />
-          {tasks.length === 0 ? <EmptyState /> : null}
+          {tasks.length === 0 && showCompletedTasks === false ? (
+            <EmptyState />
+          ) : null}
+          <div
+            role="button"
+            className="tasks__showCompletedTasksButton"
+            onClick={() => {
+              setShowCompletedTasks(!showCompletedTasks);
+            }}
+          >
+            <SyncIcon style={{ color: "grey", fontSize: 18, marginRight: 5 }} />
+            <span>Show completed tasks</span>
+          </div>
+          {showCompletedTasks && <ArchivedTasks />}
         </>
       )}
     </>
