@@ -166,7 +166,6 @@ export const ProjectSettingsMenu = ({
         anchorEl={anchorEl}
       >
         <div className={classes.settingsMenu}>
-          {project && <span>I am in {project.name}</span>}
           <div
             className={classes.settingsMenu__option}
             onClick={() => {
@@ -183,7 +182,6 @@ export const ProjectSettingsMenu = ({
               setState({ ...state, showEditProject: false });
             }}
             onSaveEdit={handleOnSaveEdit}
-            project={project}
           />
           <div className={classes.separator} />
           <div
