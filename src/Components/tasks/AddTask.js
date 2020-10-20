@@ -79,6 +79,7 @@ export const AddTask = (props) => {
       task: task,
       priority: priority,
       createdAt: new Date().toISOString(),
+      commentCount: 0,
     };
     db.collection("tasks")
       .add(newTask)

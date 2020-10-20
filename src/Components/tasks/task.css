@@ -13,12 +13,16 @@
   min-width: 200px;
 }
 
+.main__task {
+  width: 100%;
+  cursor: pointer;
+}
+
 .task__settings {
   display: flex;
   padding-left: 15px;
   color: #cacaca;
   margin-left: auto;
-  cursor: pointer;
 }
 
 .task__details {

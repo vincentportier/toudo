@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 
 import { TaskMenu } from "./TaskMenu";
 import { EditTask } from "./EditTask";
+import { TaskDialog } from "./TaskDialog";
 
 import moment from "moment";
 import {
@@ -17,6 +18,7 @@ import CheckCircleIcon from "@material-ui/icons/CheckCircleTwoTone";
 import InboxIcon from "@material-ui/icons/Inbox";
 import DotIcon from "@material-ui/icons/FiberManualRecord";
 import MoreIcon from "@material-ui/icons/MoreHoriz";
+import CommentIcon from "@material-ui/icons/Comment";
 
 // Firebase
 
@@ -39,12 +41,13 @@ const Task = ({ task }) => {
     showEditTask: false,
     taskIsHovered: false,
     showDeleteTask: false,
+    showTaskDialog: false,
   });
 
-  const { taskId, date, projectId, priority } = task;
+  const { taskId, date, projectId, priority, commentCount } = task;
 
   useEffect(() => {
-    setState({ project: projectId });
+    setState({ ...state, project: projectId });
   }, [projectId]);
 
   const handleOpenTaskMenu = (e) => {
@@ -100,7 +103,21 @@ const Task = ({ task }) => {
   };
 
   const handleDeleteTask = () => {
-    db.collection("tasks").doc(taskId).delete();
+    db.collection("comments")
+      .where("taskId", "==", taskId)
+      .get()
+      .then((snapshot) => {
+        if (snapshot.docs.length === 0) {
+          return console.log("no comments associated with this task");
+        } else {
+          let batch = db.batch();
+          snapshot.forEach((doc) => batch.delete(doc.ref));
+          return batch.commit();
+        }
+      })
+      .then(() => {
+        db.collection("tasks").doc(taskId).delete();
+      });
   };
 
   const handleDuplicateTask = () => {
@@ -145,6 +162,56 @@ const Task = ({ task }) => {
     setState({ ...state, showEditTask: false });
   };
 
+  const handleOpenTaskDialog = () => {
+    setState({ ...state, showTaskDialog: true });
+  };
+
+  const handleCloseTaskDialog = () => {
+    setState({ ...state, showTaskDialog: false });
+  };
+
+  const dateMarkup =
+    date !== "" ? (
+      <div style={{ display: "flex", alignItems: "center" }}>
+        <EventIcon
+          style={{
+            fontSize: 15,
+            marginRight: 1,
+            color: getDateColor(date),
+          }}
+        />
+        <span style={{ color: getDateColor(date) }}>{getDateMarkup(date)}</span>
+      </div>
+    ) : null;
+
+  const commentMarkup =
+    commentCount > 0 ? (
+      <div style={{ display: "flex", alignItems: "center", marginRight: 5 }}>
+        <CommentIcon style={{ color: "grey", fontSize: 15, marginRight: 5 }} />
+        <span>{commentCount}</span>
+      </div>
+    ) : null;
+
+  const projectMarkup =
+    selectedProject && selectedProject === projectId ? null : projectId ===
+      "INBOX" ? (
+      <>
+        <span>Inbox</span>
+        <InboxIcon style={{ color: "#246fe0", fontSize: 10, marginLeft: 5 }} />
+      </>
+    ) : !getProject(projects, projectId) ? null : (
+      <>
+        <span>{getProject(projects, projectId).name}</span>
+        <DotIcon
+          style={{
+            color: getProject(projects, projectId).projectColor,
+            fontSize: 10,
+            marginLeft: 5,
+          }}
+        />
+      </>
+    );
+
   return state.showEditTask ? (
     <div className="task">
       <EditTask
@@ -169,13 +236,20 @@ const Task = ({ task }) => {
             <RadioButtonUncheckedIcon className={`priority${priority}`} />
           )}
         </div>
-        <div>
-          <span className="main__task">{task.task}</span>
+        <div className="main__task" onClick={handleOpenTaskDialog}>
+          <span>{task.task}</span>
         </div>
-
+        <TaskDialog
+          open={state.showTaskDialog}
+          onClose={handleCloseTaskDialog}
+          task={task}
+        />
         <div className="task__settings">
           <Tooltip arrow={true} title="More task actions">
-            <MoreIcon onClick={(e) => handleOpenTaskMenu(e)} />
+            <MoreIcon
+              onClick={(e) => handleOpenTaskMenu(e)}
+              style={{ cursor: "pointer" }}
+            />
           </Tooltip>
 
           <TaskMenu
@@ -195,43 +269,12 @@ const Task = ({ task }) => {
         </div>
       </div>
       <div className="task__details">
-        {date && date !== "" ? (
-          <div style={{ display: "flex", alignItems: "center" }}>
-            <EventIcon
-              style={{
-                fontSize: 15,
-                marginRight: 1,
-                color: getDateColor(date),
-              }}
-            />
-            <span style={{ color: getDateColor(date) }}>
-              {getDateMarkup(date)}
-            </span>
-          </div>
-        ) : (
-          <div></div>
-        )}
+        <div style={{ display: "flex", alignItems: "center", marginRight: 5 }}>
+          {commentMarkup}
+          {dateMarkup}
+        </div>
         <div style={{ display: "flex", alignItems: "center" }}>
-          {selectedProject &&
-          selectedProject === projectId ? null : projectId === "INBOX" ? (
-            <>
-              <span>Inbox</span>
-              <InboxIcon
-                style={{ color: "#246fe0", fontSize: 10, marginLeft: 5 }}
-              />
-            </>
-          ) : !getProject(projects, projectId) ? null : (
-            <>
-              <span>{getProject(projects, projectId).name}</span>
-              <DotIcon
-                style={{
-                  color: getProject(projects, projectId).projectColor,
-                  fontSize: 10,
-                  marginLeft: 5,
-                }}
-              />
-            </>
-          )}
+          {projectMarkup}
         </div>
       </div>
     </div>
