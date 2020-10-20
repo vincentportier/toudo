@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from "react";
+import { EditProjectDialog } from "./EditProjectDialog";
 
 //MUI stuff
 import Menu from "@material-ui/core/Menu";
@@ -8,6 +9,7 @@ import Dialog from "@material-ui/core/Dialog";
 //Icons
 import DeleteIcon from "@material-ui/icons/Delete";
 import WarningIcon from "@material-ui/icons/ErrorOutline";
+import EditIcon from "@material-ui/icons/BorderColor";
 //Context
 import {
   useAuthValue,
@@ -99,7 +101,6 @@ export const ProjectSettingsMenu = ({
   keepMounted,
   onClose,
   anchorEl,
-  anchorOrigin,
 }) => {
   const classes = useStyles();
   const { user } = useAuthValue();
@@ -108,20 +109,17 @@ export const ProjectSettingsMenu = ({
   const [state, setState] = useState({
     project: null,
     showConfirmDelete: false,
+    showEditProject: false,
   });
 
   const { project, showConfirmDelete } = state;
 
   useEffect(() => {
-    const project = getProject(projects, selectedProject);
-    setState({ ...state, project: project });
-  }, [selectedProject]);
+    const currentProject = getProject(projects, selectedProject);
+    setState({ ...state, project: currentProject });
+  }, [projects, selectedProject]);
 
-  const handleShowConfirmDelete = () => {
-    setState({ ...state, showConfirmDelete: true });
-  };
-
-  const deleteProject = (projectId) => {
+  const deleteProject = () => {
     db.collection("tasks")
       .where("userId", "==", user.userId)
       .where("projectId", "==", project.projectId)
@@ -148,6 +146,17 @@ export const ProjectSettingsMenu = ({
         console.log(err);
       });
   };
+
+  const handleOnSaveEdit = (editedProject) => {
+    db.collection("projects")
+      .doc(project.docId)
+      .update({
+        name: editedProject.name,
+        projectColor: editedProject.projectColor,
+      })
+      .then(() => {});
+  };
+
   return (
     <>
       <Menu
@@ -157,11 +166,31 @@ export const ProjectSettingsMenu = ({
         anchorEl={anchorEl}
       >
         <div className={classes.settingsMenu}>
+          {project && <span>I am in {project.name}</span>}
+          <div
+            className={classes.settingsMenu__option}
+            onClick={() => {
+              setState({ ...state, showEditProject: true });
+              onClose();
+            }}
+          >
+            <EditIcon className={classes.settingsMenu__icon} />
+            <span>Edit Project</span>
+          </div>
+          <EditProjectDialog
+            open={state.showEditProject}
+            onClose={() => {
+              setState({ ...state, showEditProject: false });
+            }}
+            onSaveEdit={handleOnSaveEdit}
+            project={project}
+          />
+          <div className={classes.separator} />
           <div
             className={classes.settingsMenu__option}
             onClick={() => {
               onClose();
-              handleShowConfirmDelete();
+              setState({ ...state, showConfirmDelete: true });
             }}
           >
             <DeleteIcon className={classes.settingsMenu__icon} />
