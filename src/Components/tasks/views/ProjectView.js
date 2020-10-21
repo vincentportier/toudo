@@ -26,6 +26,8 @@ export const ProjectView = ({
   setState,
   handleReschedule,
   isLoading,
+  setShowSnackbar,
+  setLastArchivedTask,
 }) => {
   const { selectedProject } = useSelectedProjectValue();
   const { projects } = useProjectsValue();
@@ -75,7 +77,12 @@ export const ProjectView = ({
           />
         </div>
         {overdueTasks.map((task) => (
-          <Task task={task} key={task.taskId} />
+          <Task
+            task={task}
+            key={task.taskId}
+            setShowSnackbar={setShowSnackbar}
+            setLastArchivedTask={setLastArchivedTask}
+          />
         ))}
       </div>
       <div className="overdue__header">
@@ -85,7 +92,12 @@ export const ProjectView = ({
   );
 
   const currentTasksMarkup = currentTasks.map((task) => (
-    <Task task={task} key={task.taskId} />
+    <Task
+      task={task}
+      key={task.taskId}
+      setShowSnackbar={setShowSnackbar}
+      setLastArchivedTask={setLastArchivedTask}
+    />
   ));
 
   return (

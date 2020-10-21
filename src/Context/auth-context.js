@@ -35,6 +35,7 @@ export const AuthProvider = ({ children }) => {
           })
           .catch(function (error) {
             console.log("Error getting document:", error);
+            setState({ loadingUser: false, ...state });
           });
       } else {
         setState({

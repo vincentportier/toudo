@@ -17,6 +17,8 @@ export const InboxView = ({
   setState,
   handleReschedule,
   isLoading,
+  setShowSnackbar,
+  setLastArchivedTask,
 }) => {
   const [orderBy, setOrderBy] = useState({
     date: false,
@@ -42,7 +44,11 @@ export const InboxView = ({
           />
         </div>
         {overdueTasks.map((task) => (
-          <Task task={task} key={task.taskId} />
+          <Task
+            task={task}
+            key={task.taskId}
+            setShowSnackbar={setShowSnackbar}
+          />
         ))}
       </div>
       <div className="overdue__header">
@@ -52,7 +58,12 @@ export const InboxView = ({
   );
 
   const currentTasksMarkup = currentTasks.map((task) => (
-    <Task task={task} key={task.taskId} />
+    <Task
+      task={task}
+      key={task.taskId}
+      setShowSnackbar={setShowSnackbar}
+      setLastArchivedTask={setLastArchivedTask}
+    />
   ));
 
   return (

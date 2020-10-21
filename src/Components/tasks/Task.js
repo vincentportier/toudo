@@ -5,6 +5,10 @@ import { EditTask } from "./EditTask";
 import { TaskDialog } from "./TaskDialog";
 
 import moment from "moment";
+//MUI stuff
+import Tooltip from "@material-ui/core/Tooltip";
+
+//Context
 import {
   useAuthValue,
   useProjectsValue,
@@ -26,9 +30,8 @@ import { db } from "../../firebase";
 
 //Helpers
 import { getProject, getDateColor, getDateMarkup } from "../../Helpers/index";
-import { Tooltip } from "@material-ui/core";
 
-const Task = ({ task }) => {
+const Task = ({ task, setShowSnackbar, setLastArchivedTask }) => {
   const { projects } = useProjectsValue();
   const { selectedProject } = useSelectedProjectValue();
   const { user } = useAuthValue();
@@ -100,6 +103,8 @@ const Task = ({ task }) => {
   };
 
   const handleArchive = () => {
+    setLastArchivedTask(task);
+    setShowSnackbar(true);
     db.collection("tasks").doc(taskId).update({ archived: true });
   };
 

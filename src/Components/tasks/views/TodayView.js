@@ -7,7 +7,12 @@ import { useSortTasks } from "../../../Hooks";
 
 import moment from "moment";
 
-export const TodayView = ({ tasks, isLoading }) => {
+export const TodayView = ({
+  tasks,
+  isLoading,
+  setShowSnackbar,
+  setLastArchivedTask,
+}) => {
   const [orderBy] = useState({
     date: false,
     priority: true,
@@ -16,7 +21,12 @@ export const TodayView = ({ tasks, isLoading }) => {
   const { currentTasks } = useSortTasks(tasks, orderBy);
 
   const currentTasksMarkup = currentTasks.map((task) => (
-    <Task task={task} key={task.taskId} />
+    <Task
+      task={task}
+      key={task.taskId}
+      setShowSnackbar={setShowSnackbar}
+      setLastArchivedTask={setLastArchivedTask}
+    />
   ));
 
   return (

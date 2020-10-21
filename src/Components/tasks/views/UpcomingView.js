@@ -25,6 +25,8 @@ export const UpcomingView = ({
   setState,
   handleReschedule,
   isLoading,
+  setShowSnackbar,
+  setLastArchivedTask,
 }) => {
   const [orderBy] = useState({
     date: false,
@@ -95,7 +97,12 @@ export const UpcomingView = ({
           />
         </div>
         {overdueTasks.map((task) => (
-          <Task task={task} key={task.taskId} />
+          <Task
+            task={task}
+            key={task.taskId}
+            setShowSnackbar={setShowSnackbar}
+            setLastArchivedTask={setLastArchivedTask}
+          />
         ))}
       </div>
     </>
@@ -212,7 +219,12 @@ export const UpcomingView = ({
                 {currentTasks
                   .filter((task) => task.date === moment.format("MM/DD/YYYY"))
                   .map((task) => (
-                    <Task task={task} key={task.taskId} />
+                    <Task
+                      task={task}
+                      key={task.taskId}
+                      setShowSnackbar={setShowSnackbar}
+                      setLastArchivedTask={setLastArchivedTask}
+                    />
                   ))}
                 <AddTask initialSelectedDate={moment} />
               </Fragment>
