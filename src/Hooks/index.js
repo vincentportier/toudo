@@ -14,7 +14,6 @@ import { useAuthValue } from "../Context";
 
 export const useTasks = (selectedProject) => {
   const [tasks, setTasks] = useState([]);
-  const [archivedTasks, setArchivedTasks] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
   const { userCredentials } = useAuthValue();
   useEffect(() => {
@@ -24,6 +23,7 @@ export const useTasks = (selectedProject) => {
     let unsubscribe = db
       .collection("tasks")
       .where("userId", "==", userCredentials.uid)
+      .where("archived", "==", false)
       .orderBy("createdAt", "asc");
     if (!selectedProject) return;
     if (!collatedTasksExist(selectedProject)) {
@@ -46,18 +46,15 @@ export const useTasks = (selectedProject) => {
       }));
       setTasks(
         selectedProject === "UPCOMING"
-          ? newTasks.filter(
-              (task) => task.date !== "" && task.archived !== true
-            )
-          : newTasks.filter((task) => task.archived !== true)
+          ? newTasks.filter((task) => task.date !== "")
+          : newTasks
       );
-      setArchivedTasks(newTasks.filter((task) => task.archived === true));
       setIsLoading(false);
     });
     return () => unsubscribe();
   }, [selectedProject, userCredentials]);
 
-  return { tasks, archivedTasks, isLoading };
+  return { tasks, isLoading };
 };
 
 export const useProjects = () => {
