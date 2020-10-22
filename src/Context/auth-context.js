@@ -30,7 +30,6 @@ export const AuthProvider = ({ children }) => {
                 user: userData,
               });
             } else {
-              console.log("user data not found!");
             }
           })
           .catch(function (error) {
@@ -54,7 +53,12 @@ export const AuthProvider = ({ children }) => {
 
   return (
     <AuthContext.Provider
-      value={{ userCredentials, loadingUser, isAuthenticated, user }}
+      value={{
+        userCredentials,
+        loadingUser,
+        isAuthenticated,
+        user,
+      }}
     >
       {children}
     </AuthContext.Provider>

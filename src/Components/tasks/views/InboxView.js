@@ -24,6 +24,7 @@ export const InboxView = ({
     date: false,
     priority: false,
   });
+
   const [showCompletedTasks, setShowCompletedTasks] = useState(false);
 
   const { overdueTasks, currentTasks } = useSortTasks(tasks, orderBy);

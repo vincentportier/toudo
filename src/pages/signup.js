@@ -46,6 +46,7 @@ export const Signup = () => {
           userId: data.user.uid,
           createdAt: new Date().toISOString(),
           email: state.email,
+          showTutorial: true,
         });
       })
       .then(() => history.push("/"))
@@ -59,7 +60,7 @@ export const Signup = () => {
 
   const handleChange = (event) => {
     if (event.target.name === "password") {
-      if (state.password.length < 5) {
+      if (state.password.length === 0 || state.password.length < 5) {
         setState({
           ...state,
           [event.target.name]: event.target.value,
@@ -87,7 +88,7 @@ export const Signup = () => {
     <div className="authForm">
       <div className="authForm__container">
         <img src="Images/logo_large.svg" alt="logo" /> <h1>Signup</h1>
-        <form noValidate onSubmit={handleSubmit}>
+        <form onSubmit={handleSubmit}>
           <label htmlFor="email" className="authForm__label">
             Email
           </label>
@@ -113,6 +114,7 @@ export const Signup = () => {
             className="authForm__input"
             helperText={errors.name}
             error={errors.name ? true : false}
+            s
           />
           <label htmlFor="password" className="authForm__label">
             Password
