@@ -130,7 +130,9 @@ export const ProjectSettingsMenu = ({
           return console.log("no tasks associated with this project");
         } else {
           let batch = db.batch();
-          snapshot.forEach((doc) => batch.delete(doc.ref));
+          snapshot.forEach((doc) => {
+            batch.delete(doc.ref);
+          });
           return batch.commit();
         }
       })
@@ -197,7 +199,7 @@ export const ProjectSettingsMenu = ({
           </div>
         </div>
       </Menu>
-      {project !== null && (
+      {project && (
         <Dialog
           open={showConfirmDelete}
           onClose={() => {
@@ -208,7 +210,7 @@ export const ProjectSettingsMenu = ({
           <div className={classes.dialog__content}>
             <WarningIcon className={classes.warningIcon} />
             <span>
-              Are you sure you want to delete
+              Are you sure you want to delete{" "}
               <b>
                 {project.name.length > 50
                   ? project.name.substring(0, 50) + "..."

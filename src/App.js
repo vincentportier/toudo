@@ -10,7 +10,6 @@ import { PrivateRoute } from "./Components/util/PrivateRoute";
 
 import { createMuiTheme } from "@material-ui/core";
 import { ThemeProvider } from "@material-ui/styles";
-import lightBlue from "@material-ui/core/colors/lightBlue";
 
 //React router
 import { BrowserRouter as Router, Switch } from "react-router-dom";
