@@ -35,7 +35,7 @@ export const FilterTasks = ({ orderBy, setOrderBy }) => {
             className="Popover__option"
             onClick={() => {
               setAnchor(null);
-              setOrderBy({ ...orderBy, date: true });
+              setOrderBy({ ...orderBy, date: !orderBy.date });
             }}
           >
             <span>Sort by date</span>
@@ -53,7 +53,7 @@ export const FilterTasks = ({ orderBy, setOrderBy }) => {
             className="Popover__option"
             onClick={() => {
               setAnchor(null);
-              setOrderBy({ ...orderBy, priority: true });
+              setOrderBy({ ...orderBy, priority: !orderBy.priority });
             }}
           >
             <span>Sort by priority</span>{" "}

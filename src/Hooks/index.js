@@ -95,6 +95,8 @@ export const useSortTasks = (tasks, orderBy) => {
   const [currentTasks, setCurrentTasks] = useState([]);
 
   useEffect(() => {
+    if (tasks.length === 0) return;
+    console.log("order task hook fired");
     let overdueTasks = tasks.filter((task) => {
       const taskMoment = moment(task.date, "MM-DD-YYYY");
       const today = moment().format("MM/DD/YYYY");

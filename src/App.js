@@ -6,6 +6,12 @@ import { ForgotPassword } from "./pages/forgotPassword";
 import { AuthRoute } from "./Components/util/Authroute";
 import { PrivateRoute } from "./Components/util/PrivateRoute";
 
+//MUI stuff
+
+import { createMuiTheme } from "@material-ui/core";
+import { ThemeProvider } from "@material-ui/styles";
+import lightBlue from "@material-ui/core/colors/lightBlue";
+
 //React router
 import { BrowserRouter as Router, Switch } from "react-router-dom";
 
@@ -31,28 +37,47 @@ import {
   AuthProvider,
 } from "./Context/index";
 
+const defaultMaterialTheme = createMuiTheme({
+  overrides: {
+    MuiPickersDay: {
+      daySelected: {
+        color: "white",
+        backgroundColor: "#db4c3f",
+        "&:hover": {
+          backgroundColor: "#db4c3f",
+        },
+      },
+      current: {
+        color: "#db4c3f",
+      },
+    },
+  },
+});
+
 function App() {
   return (
-    <MuiPickersUtilsProvider utils={MomentUtils}>
-      <AuthProvider>
-        <SelectedProjectProvider>
-          <ProjectsProvider>
-            <Router>
-              <Switch>
-                <AuthRoute exact path="/login" component={Login} />
-                <AuthRoute exact path="/signup" component={Signup} />
-                <AuthRoute
-                  exact
-                  path="/forgotpassword"
-                  component={ForgotPassword}
-                />
-                <PrivateRoute exact path="/" component={Home} />
-              </Switch>
-            </Router>
-          </ProjectsProvider>
-        </SelectedProjectProvider>
-      </AuthProvider>
-    </MuiPickersUtilsProvider>
+    <ThemeProvider theme={defaultMaterialTheme}>
+      <MuiPickersUtilsProvider utils={MomentUtils}>
+        <AuthProvider>
+          <SelectedProjectProvider>
+            <ProjectsProvider>
+              <Router>
+                <Switch>
+                  <AuthRoute exact path="/login" component={Login} />
+                  <AuthRoute exact path="/signup" component={Signup} />
+                  <AuthRoute
+                    exact
+                    path="/forgotpassword"
+                    component={ForgotPassword}
+                  />
+                  <PrivateRoute exact path="/" component={Home} />
+                </Switch>
+              </Router>
+            </ProjectsProvider>
+          </SelectedProjectProvider>
+        </AuthProvider>
+      </MuiPickersUtilsProvider>
+    </ThemeProvider>
   );
 }
 

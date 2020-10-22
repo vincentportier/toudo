@@ -103,13 +103,13 @@ export const orderTasksByPriority = (tasks) => {
 export const orderTasksByDate = (tasks) => {
   let arrayToSort = [...tasks].map((task) => ({
     ...task,
-    date: task.date === "" ? null : moment(task.date, "MM-DD-YYYY"),
+    date: task.date === "" ? "" : moment(task.date, "MM-DD-YYYY"),
   }));
 
-  let dateIsNull = arrayToSort.filter((task) => task.date === null);
+  let dateIsNull = arrayToSort.filter((task) => task.date === "");
 
   let tasksSortedByDate = arrayToSort
-    .filter((task) => task.date !== null)
+    .filter((task) => task.date !== "")
     .sort((a, b) => a.date - b.date)
     .concat(dateIsNull);
 
