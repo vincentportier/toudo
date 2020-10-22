@@ -3,6 +3,7 @@ import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import firebase from "firebase";
 import { db } from "../firebase";
+import { useHistory } from "react-router-dom";
 
 //Material UI stuff
 import TextField from "@material-ui/core/TextField";
@@ -11,6 +12,7 @@ import TextField from "@material-ui/core/TextField";
 import { validateSignupData } from "../Helpers/validators";
 
 export const Signup = () => {
+  const history = useHistory();
   const [state, setState] = useState({
     email: "",
     password: "",
@@ -46,6 +48,7 @@ export const Signup = () => {
           email: state.email,
         });
       })
+      .then(() => history.push("/"))
       .catch((error) => {
         setState({
           ...state,
@@ -55,7 +58,27 @@ export const Signup = () => {
   };
 
   const handleChange = (event) => {
-    setState({ ...state, [event.target.name]: event.target.value, errors: {} });
+    if (event.target.name === "password") {
+      if (state.password.length < 5) {
+        setState({
+          ...state,
+          [event.target.name]: event.target.value,
+          errors: { password: "password must be at least 6 characters long" },
+        });
+      } else {
+        setState({
+          ...state,
+          [event.target.name]: event.target.value,
+          errors: {},
+        });
+      }
+    } else {
+      setState({
+        ...state,
+        [event.target.name]: event.target.value,
+        errors: {},
+      });
+    }
   };
 
   const { errors } = state;
