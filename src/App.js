@@ -28,6 +28,7 @@ import "./Components/tasks/addTask.css";
 import "./Components/tasks/editTask.css";
 import "./Components/layout/mobileNavigation.css";
 import "./pages/authForm.css";
+import "./Components/Tutorial/tutorial.css";
 
 //Context
 import {

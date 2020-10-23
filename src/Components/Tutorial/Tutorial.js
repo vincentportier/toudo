@@ -1,9 +1,9 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useLayoutEffect } from "react";
 import Dialog from "@material-ui/core/Dialog";
 import { useAuthValue } from "../../Context/index";
 import { db } from "../../firebase";
 import createTask from "../../Assets/createTask.gif";
-import AddTaskInProject from "../../Assets/addTaskInProject.gif";
+import addTaskInProject from "../../Assets/addTaskInProject.gif";
 import addTaskInToday from "../../Assets/addTaskInToday.gif";
 import commentOnTask from "../../Assets/commentOnTask.gif";
 import completedTasks from "../../Assets/completedTasks.gif";
@@ -22,10 +22,24 @@ import upcomingTasks from "../../Assets/upcomingTasks.gif";
 export const Tutorial = () => {
   const { user } = useAuthValue();
   const [showTutorial, setShowTutorial] = useState(false);
+  const [width, height] = useWindowSize();
 
   const handleDismissTutorial = () => {
     db.collection("users").doc(user.userId).update({ showTutorial: false });
   };
+
+  function useWindowSize() {
+    const [size, setSize] = useState([0, 0]);
+    useLayoutEffect(() => {
+      function updateSize() {
+        setSize([window.innerWidth, window.innerHeight]);
+      }
+      window.addEventListener("resize", updateSize);
+      updateSize();
+      return () => window.removeEventListener("resize", updateSize);
+    }, []);
+    return size;
+  }
 
   useEffect(() => {
     console.log("listener fired");
@@ -40,123 +54,249 @@ export const Tutorial = () => {
     return () => unsubscribe();
   }, []);
 
-  return (
-    <Dialog open={showTutorial} onClose={handleDismissTutorial} maxWidth="xl">
-      <div>tutorial placeholder</div>
-      <div>
-        <img
-          src={createTask}
-          alt="create a task"
-          style={{ objectFit: "contain", width: "100%" }}
-        ></img>
-      </div>
-      <div>
-        <img
-          src={scheduleTask}
-          alt="schedule a task"
-          style={{ objectFit: "contain", width: "100%" }}
-        ></img>
-      </div>
-      <div>
-        <img
-          src={setPriority}
-          alt="set priority"
-          style={{ objectFit: "contain", width: "100%" }}
-        ></img>
-      </div>
-      <div>
-        <img
-          src={createProject}
-          alt="create a project"
-          style={{ objectFit: "contain", width: "100%" }}
-        ></img>
-      </div>
-      <div>
-        <img
-          src={AddTaskInProject}
-          alt="add task in project"
-          style={{ objectFit: "contain", width: "100%" }}
-        ></img>
-      </div>
-      <div>
-        <img
-          src={addTaskInToday}
-          alt="add task in today"
-          style={{ objectFit: "contain", width: "100%" }}
-        ></img>
-      </div>
-      <div>
-        <img
-          src={upcomingTasks}
-          alt="upcoming tasks"
-          style={{ objectFit: "contain", width: "100%" }}
-        ></img>
-      </div>
-      <div>
-        <img
-          src={taskCompleted}
-          alt="mark a task as complete"
-          style={{ objectFit: "contain", width: "100%" }}
-        ></img>
-      </div>
-      <div>
-        <img
-          src={completedTasks}
-          alt="completed tasks"
-          style={{ objectFit: "contain", width: "100%" }}
-        ></img>
-      </div>
-      <div>
-        <img
-          src={reschedule}
-          alt="reschedule"
-          style={{ objectFit: "contain", width: "100%" }}
-        ></img>
-      </div>
-      <div>
-        <img
-          src={commentOnTask}
-          alt="comment"
-          style={{ objectFit: "contain", width: "100%" }}
-        ></img>
-      </div>
-      <div>
-        <img
-          src={quickAddTask}
-          alt="quick add task"
-          style={{ objectFit: "contain", width: "100%" }}
-        ></img>
-      </div>
-      <div>
-        <img
-          src={sortByDate}
-          alt="sort by date"
-          style={{ objectFit: "contain", width: "100%" }}
-        ></img>
-      </div>
-      <div>
-        <img
-          src={sortByPriority}
-          alt="sort by priority"
-          style={{ objectFit: "contain", width: "100%" }}
-        ></img>
-      </div>
-      <div>
-        <img
-          src={moreOptions}
-          alt="more options"
-          style={{ objectFit: "contain", width: "100%" }}
-        ></img>
-      </div>
-      <div>
-        <img
-          src={editTask}
-          alt="edit task"
-          style={{ objectFit: "contain", width: "100%" }}
-        ></img>
-      </div>
+  console.log(width, height);
 
-      <button onClick={handleDismissTutorial}>Got it!</button>
-    </Dialog>
+  return (
+    <>
+      {width > 800 ? (
+        <>
+          {" "}
+          <Dialog
+            open={showTutorial}
+            onClose={handleDismissTutorial}
+            maxWidth="xl"
+          >
+            <div>
+              <div>
+                <h2>Using Todoist </h2>
+                <p>
+                  Learn the basics of Todoist by checking out how to create
+                  tasks, use filters, share projects, and so much more.
+                </p>
+                <section>
+                  <h3>Create your first task</h3>
+                  <p>This is the text placeholder for that section</p>
+                  <div>
+                    <label
+                      class="click-to-gif"
+                      title="click/hit space to show gif"
+                    >
+                      <input type="checkbox" />
+                      <img src={createTask} alt="create a task"></img>
+                    </label>
+                  </div>
+                </section>
+                <section>
+                  <h3>Schedule a task</h3>
+                  <p>This is the text placeholder for that section</p>
+                  <div>
+                    <label
+                      class="click-to-gif"
+                      title="click/hit space to show gif"
+                    >
+                      <input type="checkbox" />
+                      <img src={scheduleTask} alt="schedule a task"></img>
+                    </label>
+                  </div>
+                </section>
+                <section>
+                  <h3>Set the priority</h3>
+                  <p>This is the text placeholder for that section</p>
+                  <div>
+                    <label
+                      class="click-to-gif"
+                      title="click/hit space to show gif"
+                    >
+                      <input type="checkbox" />
+                      <img src={setPriority} alt="set priority"></img>
+                    </label>
+                  </div>
+                </section>
+                <section>
+                  <h3>Create a project</h3>
+                  <p>This is the text placeholder for that section</p>
+                  <div>
+                    <label
+                      class="click-to-gif"
+                      title="click/hit space to show gif"
+                    >
+                      <input type="checkbox" />
+                      <img src={createProject} alt="create a project"></img>
+                    </label>
+                  </div>
+                </section>
+                <section>
+                  <h3>Add tasks to your projects</h3>
+                  <p>This is the text placeholder for that section</p>
+                  <div>
+                    <label
+                      class="click-to-gif2"
+                      title="click/hit space to show gif"
+                    >
+                      <input type="checkbox" />
+                      <img
+                        src={addTaskInProject}
+                        alt="add task in project"
+                      ></img>
+                    </label>
+                  </div>
+                </section>
+                <section>
+                  <h3>Use the Today view</h3>
+                  <p>This is the text placeholder for that section</p>
+                  <div>
+                    <label
+                      class="click-to-gif2"
+                      title="click/hit space to show gif"
+                    >
+                      <input type="checkbox" />
+                      <img src={addTaskInToday} alt="upcoming tasks"></img>
+                    </label>
+                  </div>
+                </section>
+                <section>
+                  <h3>Use the upcoming view</h3>
+                  <p>This is the text placeholder for that section</p>
+                  <div>
+                    <label
+                      class="click-to-gif2"
+                      title="click/hit space to show gif"
+                    >
+                      <input type="checkbox" />
+                      <img src={upcomingTasks} alt="upcoming tasks"></img>
+                    </label>
+                  </div>
+                </section>
+                <section>
+                  <h3>Mark a task as completed</h3>
+                  <p>This is the text placeholder for that section</p>
+                  <div>
+                    <label
+                      class="click-to-gif2"
+                      title="click/hit space to show gif"
+                    >
+                      <input type="checkbox" />
+                      <img
+                        src={taskCompleted}
+                        alt="mark a task as complete"
+                      ></img>
+                    </label>
+                  </div>
+                </section>
+                <section>
+                  <h3>Check your completed tasks and unarchive them</h3>
+                  <p>This is the text placeholder for that section</p>
+                  <div>
+                    <label
+                      class="click-to-gif2"
+                      title="click/hit space to show gif"
+                    >
+                      <input type="checkbox" />
+                      <img src={completedTasks} alt="completed tasks"></img>
+                    </label>
+                  </div>
+                </section>
+                <section>
+                  <h3>Reschedule overdue tasks</h3>
+                  <p>This is the text placeholder for that section</p>
+                  <div>
+                    <label
+                      class="click-to-gif2"
+                      title="click/hit space to show gif"
+                    >
+                      <input type="checkbox" />
+                      <img src={reschedule} alt="reschedule"></img>
+                    </label>
+                  </div>
+                </section>
+                <section>
+                  <h3>Comment on your tasks</h3>
+                  <p>This is the text placeholder for that section</p>
+                  <div>
+                    <label
+                      class="click-to-gif2"
+                      title="click/hit space to show gif"
+                    >
+                      <input type="checkbox" />
+                      <img src={commentOnTask} alt="comment"></img>
+                    </label>
+                  </div>
+                </section>
+                <section>
+                  <h3>Use the Quick Add Task feature</h3>
+                  <p>This is the text placeholder for that section</p>
+                  <div>
+                    <label
+                      class="click-to-gif2"
+                      title="click/hit space to show gif"
+                    >
+                      <input type="checkbox" />
+                      <img src={quickAddTask} alt="quick add task"></img>
+                    </label>
+                  </div>
+                </section>
+                <section>
+                  <h3>Sort your tasks by date</h3>
+                  <p>This is the text placeholder for that section</p>
+                  <div>
+                    <label
+                      class="click-to-gif2"
+                      title="click/hit space to show gif"
+                    >
+                      <input type="checkbox" />
+                      <img src={sortByDate} alt="sort by date"></img>
+                    </label>
+                  </div>
+                </section>
+                <section>
+                  <h3>Sort your tasks by priority</h3>
+                  <p>This is the text placeholder for that section</p>
+                  <div>
+                    <label
+                      class="click-to-gif2"
+                      title="click/hit space to show gif"
+                    >
+                      <input type="checkbox" />
+                      <img src={sortByPriority} alt="sort by priority"></img>
+                    </label>
+                  </div>
+                </section>
+                <section>
+                  <h3>Edit your tasks using the more options menu</h3>
+                  <p>This is the text placeholder for that section</p>
+                  <div>
+                    <label
+                      class="click-to-gif2"
+                      title="click/hit space to show gif"
+                    >
+                      <input type="checkbox" />
+                      <img src={moreOptions} alt="more options"></img>
+                    </label>
+                  </div>
+                </section>
+                <section>
+                  <h3>Edit a task</h3>
+                  <p>This is the text placeholder for that section</p>
+                  <div>
+                    <label
+                      class="click-to-gif2"
+                      title="click/hit space to show gif"
+                    >
+                      <input type="checkbox" />
+                      <img src={editTask} alt="edit task"></img>
+                    </label>
+                  </div>
+                </section>
+              </div>
+            </div>
+            <button onClick={handleDismissTutorial}>Got it!</button>
+          </Dialog>
+        </>
+      ) : (
+        <Dialog open={showTutorial} onClose={handleDismissTutorial}>
+          Mobile tuto placeholder
+        </Dialog>
+      )}
+    </>
   );
 };

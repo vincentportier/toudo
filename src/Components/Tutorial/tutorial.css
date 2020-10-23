@@ -1,0 +1,56 @@
+.click-to-gif img {
+  display: block;
+}
+
+.click-to-gif input[type="checkbox"] {
+  position: absolute;
+  left: -100vw;
+}
+
+label.click-to-gif {
+  display: block;
+  float: left;
+
+  background-image: url("https://firebasestorage.googleapis.com/v0/b/todoist-clone-b8b9b.appspot.com/o/createtTaskOverlay.png?alt=media&token=125ffc46-1f96-4dcd-b778-9f37ee1999a2");
+}
+
+.click-to-gif:hover,
+.click-to-gif:focus-within {
+  cursor: pointer;
+  background-image: url("https://firebasestorage.googleapis.com/v0/b/todoist-clone-b8b9b.appspot.com/o/createtTaskOverlay.png?alt=media&token=125ffc46-1f96-4dcd-b778-9f37ee1999a2");
+}
+
+.click-to-gif input[type="checkbox"] + img {
+  opacity: 0;
+}
+.click-to-gif input[type="checkbox"]:checked + img {
+  opacity: 1;
+}
+.click-to-gif2 img {
+  display: block;
+}
+
+.click-to-gif2 input[type="checkbox"] {
+  position: absolute;
+  left: -100vw;
+}
+
+label.click-to-gif2 {
+  display: block;
+  float: left;
+
+  background-image: url("https://firebasestorage.googleapis.com/v0/b/todoist-clone-b8b9b.appspot.com/o/createtTaskOverlay2.png?alt=media&token=01fadf96-a183-4635-ba44-e3d7c5330f50");
+}
+
+.click-to-gif2:hover,
+.click-to-gif2:focus-within {
+  cursor: pointer;
+  background-image: url("https://firebasestorage.googleapis.com/v0/b/todoist-clone-b8b9b.appspot.com/o/createtTaskOverlay2.png?alt=media&token=01fadf96-a183-4635-ba44-e3d7c5330f50");
+}
+
+.click-to-gif2 input[type="checkbox"] + img {
+  opacity: 0;
+}
+.click-to-gif2 input[type="checkbox"]:checked + img {
+  opacity: 1;
+}
