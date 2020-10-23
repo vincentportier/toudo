@@ -82,7 +82,11 @@ export const Tutorial = () => {
                       title="click/hit space to show gif"
                     >
                       <input type="checkbox" />
-                      <img src={createTask} alt="create a task"></img>
+                      <img
+                        src={createTask}
+                        loading="lazy"
+                        alt="create a task"
+                      ></img>
                     </label>
                   </div>
                 </section>
@@ -95,7 +99,11 @@ export const Tutorial = () => {
                       title="click/hit space to show gif"
                     >
                       <input type="checkbox" />
-                      <img src={scheduleTask} alt="schedule a task"></img>
+                      <img
+                        loading="lazy"
+                        src={scheduleTask}
+                        alt="schedule a task"
+                      ></img>
                     </label>
                   </div>
                 </section>
@@ -108,7 +116,11 @@ export const Tutorial = () => {
                       title="click/hit space to show gif"
                     >
                       <input type="checkbox" />
-                      <img src={setPriority} alt="set priority"></img>
+                      <img
+                        loading="lazy"
+                        src={setPriority}
+                        alt="set priority"
+                      ></img>
                     </label>
                   </div>
                 </section>
@@ -121,7 +133,11 @@ export const Tutorial = () => {
                       title="click/hit space to show gif"
                     >
                       <input type="checkbox" />
-                      <img src={createProject} alt="create a project"></img>
+                      <img
+                        loading="lazy"
+                        src={createProject}
+                        alt="create a project"
+                      ></img>
                     </label>
                   </div>
                 </section>
@@ -135,6 +151,7 @@ export const Tutorial = () => {
                     >
                       <input type="checkbox" />
                       <img
+                        loading="lazy"
                         src={addTaskInProject}
                         alt="add task in project"
                       ></img>
@@ -150,7 +167,11 @@ export const Tutorial = () => {
                       title="click/hit space to show gif"
                     >
                       <input type="checkbox" />
-                      <img src={addTaskInToday} alt="upcoming tasks"></img>
+                      <img
+                        loading="lazy"
+                        src={addTaskInToday}
+                        alt="upcoming tasks"
+                      ></img>
                     </label>
                   </div>
                 </section>
@@ -163,7 +184,11 @@ export const Tutorial = () => {
                       title="click/hit space to show gif"
                     >
                       <input type="checkbox" />
-                      <img src={upcomingTasks} alt="upcoming tasks"></img>
+                      <img
+                        loading="lazy"
+                        src={upcomingTasks}
+                        alt="upcoming tasks"
+                      ></img>
                     </label>
                   </div>
                 </section>
@@ -177,6 +202,7 @@ export const Tutorial = () => {
                     >
                       <input type="checkbox" />
                       <img
+                        loading="lazy"
                         src={taskCompleted}
                         alt="mark a task as complete"
                       ></img>
@@ -192,7 +218,11 @@ export const Tutorial = () => {
                       title="click/hit space to show gif"
                     >
                       <input type="checkbox" />
-                      <img src={completedTasks} alt="completed tasks"></img>
+                      <img
+                        loading="lazy"
+                        src={completedTasks}
+                        alt="completed tasks"
+                      ></img>
                     </label>
                   </div>
                 </section>
@@ -205,7 +235,11 @@ export const Tutorial = () => {
                       title="click/hit space to show gif"
                     >
                       <input type="checkbox" />
-                      <img src={reschedule} alt="reschedule"></img>
+                      <img
+                        loading="lazy"
+                        src={reschedule}
+                        alt="reschedule"
+                      ></img>
                     </label>
                   </div>
                 </section>
@@ -218,7 +252,11 @@ export const Tutorial = () => {
                       title="click/hit space to show gif"
                     >
                       <input type="checkbox" />
-                      <img src={commentOnTask} alt="comment"></img>
+                      <img
+                        loading="lazy"
+                        src={commentOnTask}
+                        alt="comment"
+                      ></img>
                     </label>
                   </div>
                 </section>
@@ -231,7 +269,11 @@ export const Tutorial = () => {
                       title="click/hit space to show gif"
                     >
                       <input type="checkbox" />
-                      <img src={quickAddTask} alt="quick add task"></img>
+                      <img
+                        loading="lazy"
+                        src={quickAddTask}
+                        alt="quick add task"
+                      ></img>
                     </label>
                   </div>
                 </section>
@@ -244,7 +286,11 @@ export const Tutorial = () => {
                       title="click/hit space to show gif"
                     >
                       <input type="checkbox" />
-                      <img src={sortByDate} alt="sort by date"></img>
+                      <img
+                        loading="lazy"
+                        src={sortByDate}
+                        alt="sort by date"
+                      ></img>
                     </label>
                   </div>
                 </section>
@@ -257,7 +303,11 @@ export const Tutorial = () => {
                       title="click/hit space to show gif"
                     >
                       <input type="checkbox" />
-                      <img src={sortByPriority} alt="sort by priority"></img>
+                      <img
+                        loading="lazy"
+                        src={sortByPriority}
+                        alt="sort by priority"
+                      ></img>
                     </label>
                   </div>
                 </section>
@@ -270,7 +320,11 @@ export const Tutorial = () => {
                       title="click/hit space to show gif"
                     >
                       <input type="checkbox" />
-                      <img src={moreOptions} alt="more options"></img>
+                      <img
+                        loading="lazy"
+                        src={moreOptions}
+                        alt="more options"
+                      ></img>
                     </label>
                   </div>
                 </section>
@@ -283,7 +337,7 @@ export const Tutorial = () => {
                       title="click/hit space to show gif"
                     >
                       <input type="checkbox" />
-                      <img src={editTask} alt="edit task"></img>
+                      <img loading="lazy" src={editTask} alt="edit task"></img>
                     </label>
                   </div>
                 </section>
