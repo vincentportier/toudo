@@ -1,5 +1,8 @@
 .click-to-gif img {
   display: block;
+  margin: auto;
+  object-fit: contain;
+  width: 100%;
 }
 
 .click-to-gif input[type="checkbox"] {
@@ -8,9 +11,10 @@
 }
 
 label.click-to-gif {
+  margin: auto;
   display: block;
-  float: left;
-
+  width: 100%;
+  background-size: contain;
   background-image: url("https://firebasestorage.googleapis.com/v0/b/todoist-clone-b8b9b.appspot.com/o/createtTaskOverlay.png?alt=media&token=125ffc46-1f96-4dcd-b778-9f37ee1999a2");
 }
 
@@ -28,6 +32,9 @@ label.click-to-gif {
 }
 .click-to-gif2 img {
   display: block;
+  margin: auto;
+  object-fit: contain;
+  width: 100%;
 }
 
 .click-to-gif2 input[type="checkbox"] {
@@ -36,9 +43,10 @@ label.click-to-gif {
 }
 
 label.click-to-gif2 {
+  margin: auto;
   display: block;
-  float: left;
-
+  width: 100%;
+  background-size: contain;
   background-image: url("https://firebasestorage.googleapis.com/v0/b/todoist-clone-b8b9b.appspot.com/o/createtTaskOverlay2.png?alt=media&token=01fadf96-a183-4635-ba44-e3d7c5330f50");
 }
 
