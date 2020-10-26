@@ -62,3 +62,35 @@ label.click-to-gif2 {
 .click-to-gif2 input[type="checkbox"]:checked + img {
   opacity: 1;
 }
+.click-to-gif-mobile img {
+  display: block;
+  margin: auto;
+  object-fit: contain;
+  width: 100%;
+}
+
+.click-to-gif-mobile input[type="checkbox"] {
+  position: absolute;
+  left: -100vw;
+}
+
+label.click-to-gif-mobile {
+  margin: auto;
+  display: block;
+  width: 100%;
+  background-size: contain;
+  background-image: url("https://firebasestorage.googleapis.com/v0/b/todoist-clone-b8b9b.appspot.com/o/createtTaskOverlayMobile.png?alt=media&token=9fedceda-0068-4a5a-a793-96c164a1f6db");
+}
+
+.click-to-gif-mobile:hover,
+.click-to-gif-mobile:focus-within {
+  cursor: pointer;
+  background-image: url("https://firebasestorage.googleapis.com/v0/b/todoist-clone-b8b9b.appspot.com/o/createtTaskOverlayMobile.png?alt=media&token=9fedceda-0068-4a5a-a793-96c164a1f6db");
+}
+
+.click-to-gif-mobile input[type="checkbox"] + img {
+  opacity: 0;
+}
+.click-to-gif-mobile input[type="checkbox"]:checked + img {
+  opacity: 1;
+}
