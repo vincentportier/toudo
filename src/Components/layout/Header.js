@@ -2,6 +2,7 @@ import React, { useState } from "react";
 
 import moment from "moment";
 import firebase from "firebase";
+import { db } from "../../firebase";
 
 //MUI stuff
 import Dialog from "@material-ui/core/Dialog";
@@ -12,6 +13,7 @@ import Menu from "@material-ui/core/Menu";
 import AddIcon from "@material-ui/icons/Add";
 import SettingsIcon from "@material-ui/icons/Settings";
 import SignoutIcon from "@material-ui/icons/ExitToApp";
+import HelpIcon from "@material-ui/icons/Help";
 
 import { useAuthValue, useSelectedProjectValue } from "../../Context/index";
 import { AddTask } from "../tasks/AddTask";
@@ -68,6 +70,11 @@ export const Header = () => {
 
   const handleOnSettingsMenuClose = () => {
     setAnchorSettingsMenu(null);
+  };
+
+  const handleShowTutorial = () => {
+    handleOnSettingsMenuClose();
+    db.collection("users").doc(user.userId).update({ showTutorial: true });
   };
 
   return (
@@ -128,10 +135,17 @@ export const Header = () => {
           keepMounted
         >
           <div className={classes.settingsMenu}>
-            <div>
+            <div style={{ padding: 5 }}>
               <span>Welcome {user.name}</span>
             </div>
             <div className={classes.separator} />
+            <div
+              className={classes.settingsMenu__option}
+              onClick={handleShowTutorial}
+            >
+              <HelpIcon className={classes.settingsMenu__icon} />
+              <span>Help</span>
+            </div>
             <div
               className={classes.settingsMenu__option}
               onClick={handleSignout}

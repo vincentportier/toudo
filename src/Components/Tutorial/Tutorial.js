@@ -1,9 +1,8 @@
-import React, { useState, useEffect, useLayoutEffect } from "react";
+import React, { useState, useLayoutEffect } from "react";
 import Dialog from "@material-ui/core/Dialog";
 import makeStyles from "@material-ui/core/styles/makeStyles";
 import { tutorialOptions } from "../../Constants/index";
-import { useAuthValue } from "../../Context/index";
-import { db } from "../../firebase";
+import { useAuthValue } from "../../Context";
 
 const useStyles = makeStyles({
   content__optionButtonsContainer: {
@@ -68,16 +67,10 @@ const useStyles = makeStyles({
   },
 });
 
-export const Tutorial = () => {
-  const { user } = useAuthValue();
-  const [showTutorial, setShowTutorial] = useState(false);
+export const Tutorial = ({ showTutorial, onDismissTutorial }) => {
   const [width] = useWindowSize();
   const [active, setActive] = useState("createTask");
   const classes = useStyles();
-
-  const handleDismissTutorial = () => {
-    db.collection("users").doc(user.userId).update({ showTutorial: false });
-  };
 
   function useWindowSize() {
     const [size, setSize] = useState([0, 0]);
@@ -92,169 +85,132 @@ export const Tutorial = () => {
     return size;
   }
 
-  useEffect(() => {
-    const unsubscribe = db
-      .collection("users")
-      .doc(user.userId)
-      .onSnapshot((doc) => {
-        doc.exists && doc.data().showTutorial !== undefined
-          ? setShowTutorial(doc.data().showTutorial)
-          : setShowTutorial(true);
-      });
-    return () => unsubscribe();
-  }, []);
+  const desktopTutorialMarkup = (
+    <div>
+      <div className={classes.dialog__content}>
+        <h2 style={{ margin: 15 }}>Welcome!</h2>
+        <p>
+          Learn the basics by checking out how to create tasks, use filters,
+          share projects, and so much more:
+        </p>
+        <div className={classes.content__optionButtonsContainer}>
+          {tutorialOptions.map((option) => (
+            <button
+              className={classes.optionButton}
+              key={option.name}
+              onClick={() => {
+                setActive(option.name);
+              }}
+            >
+              {option.header}
+            </button>
+          ))}
+        </div>
+        {tutorialOptions.map((option) => {
+          return (
+            <section key={option.name}>
+              {active === option.name ? (
+                <>
+                  <h3>{option.header}</h3>
 
-  return (
-    <>
-      {width > 800 ? (
-        <>
-          <Dialog
-            open={showTutorial}
-            onClose={handleDismissTutorial}
-            maxWidth="xl"
-          >
-            <div>
-              <div className={classes.dialog__content}>
-                <h2 style={{ margin: 15 }}>Welcome!</h2>
-                <p>
-                  Learn the basics by checking out how to create tasks, use
-                  filters, share projects, and so much more:
-                </p>
-                <div className={classes.content__optionButtonsContainer}>
-                  {tutorialOptions.map((option) => (
-                    <button
-                      className={classes.optionButton}
-                      key={option.name}
-                      onClick={() => {
-                        setActive(option.name);
-                      }}
-                    >
-                      {option.header}
-                    </button>
-                  ))}
-                </div>
-                {tutorialOptions.map((option) => {
-                  return (
-                    <section key={option.name}>
-                      {active === option.name ? (
-                        <>
-                          <h3>{option.header}</h3>
+                  <div
+                    style={{
+                      width: "100%",
 
-                          <div
-                            style={{
-                              width: "100%",
-
-                              padding: "20px",
-                            }}
-                          >
-                            <label
-                              className={option.class}
-                              title="click/hit space to show gif"
-                            >
-                              <input type="checkbox" />
-                              <img src={option.src} alt={option.header}></img>
-                            </label>
-                          </div>
-                        </>
-                      ) : null}
-                    </section>
-                  );
-                })}
-
-                <div className={classes.content__footer}>
-                  <button
-                    className={classes.confirmButton}
-                    onClick={handleDismissTutorial}
-                  >
-                    Got it!
-                  </button>
-                </div>
-              </div>
-            </div>
-          </Dialog>
-        </>
-      ) : (
-        <Dialog open={showTutorial} onClose={handleDismissTutorial}>
-          <div>
-            <div className={classes.dialog__content}>
-              <h2 style={{ margin: 15 }}>Welcome!</h2>
-              <p>
-                Learn the basics by checking out how to create tasks, use
-                filters, share projects, and so much more:
-              </p>
-              <select
-                name="tutorial options"
-                value={active}
-                onChange={(event) => {
-                  setActive(event.target.value);
-                }}
-                style={{
-                  width: "250px",
-                  margin: "auto",
-                  marginTop: "10px",
-                  marginBottom: "10px",
-                }}
-              >
-                {tutorialOptions.map((option) => (
-                  <option value={option.name}>{option.header}</option>
-                ))}
-              </select>
-              {/* <div className={classes.content__optionButtonsContainer}>
-                {tutorialOptions.map((option) => (
-                  <button
-                    className={classes.optionButton}
-                    key={option.name}
-                    onClick={() => {
-                      setActive(option.name);
+                      padding: "20px",
                     }}
                   >
-                    {option.header}
-                  </button>
-                ))}
-              </div> */}
-              {tutorialOptions.map((option) => {
-                return (
-                  <section key={option.name}>
-                    {active === option.name ? (
-                      <>
-                        <h3>{option.header}</h3>
+                    <label
+                      className={option.class}
+                      title="click/hit space to show gif"
+                    >
+                      <input type="checkbox" />
+                      <img src={option.src} alt={option.header}></img>
+                    </label>
+                  </div>
+                </>
+              ) : null}
+            </section>
+          );
+        })}
 
-                        <div
-                          style={{
-                            width: "100%",
+        <div className={classes.content__footer}>
+          <button className={classes.confirmButton} onClick={onDismissTutorial}>
+            Got it!
+          </button>
+        </div>
+      </div>
+    </div>
+  );
 
-                            padding: "20px",
-                          }}
-                        >
-                          <label
-                            className={option.classMobile}
-                            title="click/hit space to show gif"
-                          >
-                            <input type="checkbox" />
-                            <img
-                              src={option.srcMobile}
-                              alt={option.header}
-                            ></img>
-                          </label>
-                        </div>
-                      </>
-                    ) : null}
-                  </section>
-                );
-              })}
+  const mobileTutorialMarkup = (
+    <div>
+      <div className={classes.dialog__content}>
+        <h2 style={{ margin: 15 }}>Welcome!</h2>
+        <p>
+          Learn the basics by checking out how to create tasks, use filters,
+          share projects, and so much more:
+        </p>
+        <select
+          name="tutorial options"
+          value={active}
+          onChange={(event) => {
+            setActive(event.target.value);
+          }}
+          style={{
+            width: "250px",
+            margin: "auto",
+            marginTop: "10px",
+            marginBottom: "10px",
+          }}
+        >
+          {tutorialOptions.map((option) => (
+            <option key={option.name} value={option.name}>
+              {option.header}
+            </option>
+          ))}
+        </select>
 
-              <div className={classes.content__footer}>
-                <button
-                  className={classes.confirmButton}
-                  onClick={handleDismissTutorial}
-                >
-                  Got it!
-                </button>
-              </div>
-            </div>
-          </div>
-        </Dialog>
-      )}
-    </>
+        {tutorialOptions.map((option) => {
+          return (
+            <section key={option.name}>
+              {active === option.name ? (
+                <>
+                  <h3>{option.header}</h3>
+
+                  <div
+                    style={{
+                      width: "100%",
+
+                      padding: "20px",
+                    }}
+                  >
+                    <label
+                      className={option.classMobile}
+                      title="click/hit space to show gif"
+                    >
+                      <input type="checkbox" />
+                      <img src={option.srcMobile} alt={option.header}></img>
+                    </label>
+                  </div>
+                </>
+              ) : null}
+            </section>
+          );
+        })}
+
+        <div className={classes.content__footer}>
+          <button className={classes.confirmButton} onClick={onDismissTutorial}>
+            Got it!
+          </button>
+        </div>
+      </div>
+    </div>
+  );
+
+  return (
+    <Dialog open={showTutorial} onClose={onDismissTutorial} maxWidth="xl">
+      {width > 800 ? desktopTutorialMarkup : mobileTutorialMarkup}
+    </Dialog>
   );
 };

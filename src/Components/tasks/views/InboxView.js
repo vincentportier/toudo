@@ -49,6 +49,7 @@ export const InboxView = ({
             task={task}
             key={task.taskId}
             setShowSnackbar={setShowSnackbar}
+            setLastArchivedTask={setLastArchivedTask}
           />
         ))}
       </div>

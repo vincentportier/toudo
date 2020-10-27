@@ -114,7 +114,6 @@ export const Signup = () => {
             className="authForm__input"
             helperText={errors.name}
             error={errors.name ? true : false}
-            s
           />
           <label htmlFor="password" className="authForm__label">
             Password

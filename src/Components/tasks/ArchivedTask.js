@@ -101,6 +101,10 @@ export const ArchivedTask = ({
     db.collection("tasks").doc(taskId).update({ archived: false });
   };
 
+  const handleClose = () => {
+    setState({ ...state, anchorTaskMenu: null });
+  };
+
   const handleDeleteTask = () => {
     db.collection("comments")
       .where("taskId", "==", taskId)
@@ -175,9 +179,7 @@ export const ArchivedTask = ({
             </Tooltip>
             <Menu
               open={Boolean(state.anchorTaskMenu)}
-              onClose={() => {
-                setState({ anchorTaskMenu: null, ...state });
-              }}
+              onClose={handleClose}
               anchorEl={state.anchorTaskMenu}
             >
               <div className={classes.taskMenu}>
