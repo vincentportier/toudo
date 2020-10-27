@@ -18,7 +18,7 @@ export const useTasks = (selectedProject) => {
   const { userCredentials } = useAuthValue();
   useEffect(() => {
     if (!userCredentials) return;
-    console.log("task hook fired with usercred:", userCredentials);
+
     setIsLoading(true);
     let unsubscribe = db
       .collection("tasks")
@@ -62,10 +62,7 @@ export const useProjects = () => {
   const { userCredentials } = useAuthValue();
   useEffect(() => {
     if (!userCredentials) return;
-    console.log(
-      "project hook has been fired with following user cred:",
-      userCredentials
-    );
+
     let unsubscribe = db
       .collection("projects")
       .where("userId", "==", userCredentials.uid)
@@ -132,7 +129,7 @@ export const useArchivedTasks = (selectedProject) => {
   const [loadingArchivedTasks, setLoadingArchivedTasks] = useState(false);
   useEffect(() => {
     if (!userCredentials) return;
-    console.log("archivedTasks hook fired with usercred:", userCredentials);
+
     setLoadingArchivedTasks(true);
     let unsubscribe = db
       .collection("tasks")
