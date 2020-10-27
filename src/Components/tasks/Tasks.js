@@ -1,17 +1,22 @@
 import React, { useState } from "react";
+
+//moment
+import moment from "moment";
+//firebase
+import { db } from "../../firebase";
+
+//Views
 import { InboxView } from "./views/InboxView";
 import { TodayView } from "./views/TodayView";
 import { UpcomingView } from "./views/UpcomingView";
 import { ProjectView } from "./views/ProjectView";
+
+//util
 import { ArchivedSnackbar } from "../util/ArchivedSnackbar";
-
+//Hooks
 import { useTasks, useSortTasks } from "../../Hooks/index";
-
+//Context
 import { useSelectedProjectValue } from "../../Context";
-
-import moment from "moment";
-
-import { db } from "../../firebase";
 
 const Tasks = () => {
   const { selectedProject } = useSelectedProjectValue();

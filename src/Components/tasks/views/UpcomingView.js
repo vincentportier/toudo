@@ -1,15 +1,21 @@
 import React, { useEffect, useState, createRef, Fragment } from "react";
 
+//moment
 import moment from "moment";
 
-import { Datepicker } from "../../util/Datepicker";
+//components
+import Task from "../Task";
 import { AddTask } from "../AddTask";
 
+//util
+import { Datepicker } from "../../util/Datepicker";
+//MUI stuff
 import { DatePicker } from "@material-ui/pickers";
 
-import Task from "../Task";
+//hooks
 import { useSortTasks } from "../../../Hooks";
 
+//helpers
 import { createUpcomingDatesArray } from "../../../Helpers/index";
 
 //Icons

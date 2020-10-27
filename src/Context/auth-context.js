@@ -1,7 +1,7 @@
 import React, { createContext, useContext, useEffect, useState } from "react";
 
-import firebase from "firebase";
-import { db } from "../firebase";
+//firebase
+import { db, auth } from "../firebase";
 import PropTypes from "prop-types";
 
 export const AuthContext = createContext();
@@ -15,7 +15,7 @@ export const AuthProvider = ({ children }) => {
   });
 
   useEffect(() => {
-    const unsubscribe = firebase.auth().onAuthStateChanged((user) => {
+    const unsubscribe = auth.onAuthStateChanged((user) => {
       if (user) {
         db.collection("users")
           .doc(`${user.uid}`)
@@ -47,6 +47,7 @@ export const AuthProvider = ({ children }) => {
     });
 
     return () => unsubscribe();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   const { isAuthenticated, userCredentials, loadingUser, user } = state;

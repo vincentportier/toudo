@@ -1,6 +1,6 @@
-import EmptyInbox from "../EmptyInbox.svg";
-import EmptyToday from "../EmptyToday.svg";
-import EmptyProject from "../EmptyProject.svg";
+import EmptyInbox from "../Assets/emptyImages/EmptyInbox.svg";
+import EmptyToday from "../Assets/emptyImages/EmptyToday.svg";
+import EmptyProject from "../Assets/emptyImages/EmptyProject.svg";
 
 import createTask from "../Assets/tutorial__desktop/createTask.gif";
 import addTaskInProject from "../Assets/tutorial__desktop/addTaskInProject.gif";

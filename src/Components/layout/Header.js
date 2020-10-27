@@ -1,8 +1,8 @@
 import React, { useState } from "react";
 
 import moment from "moment";
-import firebase from "firebase";
-import { db } from "../../firebase";
+
+import { db, auth } from "../../firebase";
 
 //MUI stuff
 import Dialog from "@material-ui/core/Dialog";
@@ -53,8 +53,7 @@ export const Header = () => {
   const classes = useStyles();
 
   const handleSignout = () => {
-    firebase
-      .auth()
+    auth
       .signOut()
       .then(() => {
         setSelectedProject("INBOX");

@@ -13,6 +13,7 @@ export const Home = () => {
     db.collection("users").doc(user.userId).update({ showTutorial: false });
   };
 
+  //listener on logged in user to show or close the tutorial
   useEffect(() => {
     const unsubscribe = db
       .collection("users")
@@ -23,6 +24,7 @@ export const Home = () => {
           : setShowTutorial(true);
       });
     return () => unsubscribe();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   return (

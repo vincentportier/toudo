@@ -1,6 +1,11 @@
 import React, { useState } from "react";
+
+//router
 import { Link } from "react-router-dom";
-import firebase from "firebase";
+
+//firebase
+import firebase from "firebase/app";
+import { auth } from "../firebase";
 
 //Material UI stuff
 import TextField from "@material-ui/core/TextField";
@@ -27,12 +32,10 @@ export const Login = () => {
     const { valid, errors } = validateLoginData(user);
     if (!valid) return setState({ ...state, errors: errors });
 
-    firebase
-      .auth()
+    auth
       .signInWithEmailAndPassword(user.email, user.password)
       .then((data) => {
-        console.log("user signed in with this data:", data);
-        firebase.auth().setPersistence(firebase.auth.Auth.Persistence.SESSION);
+        auth.setPersistence(firebase.auth.Auth.Persistence.SESSION);
       })
       .catch((error) => {
         setState({

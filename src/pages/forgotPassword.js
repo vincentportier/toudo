@@ -1,11 +1,14 @@
 import React, { useState } from "react";
+
+//React router
 import { Link } from "react-router-dom";
-import firebase from "firebase";
+//Firebase
+import { auth } from "../firebase";
 
 //Material UI stuff
 import TextField from "@material-ui/core/TextField";
 
-//helpers
+//validators
 import { isEmail } from "../Helpers/validators";
 
 export const ForgotPassword = () => {
@@ -27,10 +30,9 @@ export const ForgotPassword = () => {
         errors: { email: "please enter a valid email" },
       });
 
-    firebase
-      .auth()
+    auth
       .sendPasswordResetEmail(emailAddress)
-      .then(function () {
+      .then(() => {
         setState({ ...state, showConfirmationMessage: true });
       })
       .catch(function (error) {

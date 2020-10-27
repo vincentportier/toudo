@@ -1,12 +1,17 @@
 import React, { useState } from "react";
 
-import { Datepicker } from "../../util/Datepicker";
+//components
 import { AddTask } from "../AddTask";
 import { EmptyState } from "../../layout/EmptyState";
 import Task from "../Task";
-import { useSortTasks } from "../../../Hooks";
-import { FilterTasks } from "../../util/FilterTasks";
 import { ArchivedTasks } from "../ArchivedTasks";
+
+//utils
+import { Datepicker } from "../../util/Datepicker";
+import { FilterTasks } from "../../util/FilterTasks";
+//hooks
+import { useSortTasks } from "../../../Hooks";
+
 //icons
 import SyncIcon from "@material-ui/icons/Sync";
 

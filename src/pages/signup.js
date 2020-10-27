@@ -1,8 +1,8 @@
 import React, { useState } from "react";
 
 import { Link } from "react-router-dom";
-import firebase from "firebase";
-import { db } from "../firebase";
+import firebase from "firebase/app";
+import { db, auth } from "../firebase";
 import { useHistory } from "react-router-dom";
 
 //Material UI stuff
@@ -35,12 +35,10 @@ export const Signup = () => {
     const { valid, errors } = validateSignupData(newUser);
     if (!valid) return setState({ ...state, errors: errors });
 
-    firebase
-      .auth()
+    auth
       .createUserWithEmailAndPassword(newUser.email, newUser.password)
       .then((data) => {
-        console.log("user created with following data:", data);
-        firebase.auth().setPersistence(firebase.auth.Auth.Persistence.SESSION);
+        auth.setPersistence(firebase.auth.Auth.Persistence.SESSION);
         db.collection("users").doc(`${data.user.uid}`).set({
           name: state.name,
           userId: data.user.uid,

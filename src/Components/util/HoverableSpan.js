@@ -4,12 +4,7 @@ import React, { useState } from "react";
 import AddIcon from "@material-ui/icons/Add";
 import AddCircleOutlinedIcon from "@material-ui/icons/AddCircleOutlined";
 
-export const HoverableSpan = ({
-  className,
-  handleClick,
-  spanContent,
-  children,
-}) => {
+export const HoverableSpan = ({ className, handleClick, children }) => {
   const [isHovered, setIsHovered] = useState(false);
   return (
     <div

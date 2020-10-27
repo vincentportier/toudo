@@ -88,7 +88,7 @@ export const AddTask = (props) => {
         setSelectedDate(
           initialSelectedDate ? moment(initialSelectedDate) : null
         );
-        setShowQuickAddTask(false);
+        if (setShowQuickAddTask) setShowQuickAddTask(false);
       })
       .catch((error) => {
         console.log(error);
@@ -159,6 +159,7 @@ export const AddTask = (props) => {
           </button>
           {!showQuickAddTask ? (
             <button
+              type="button"
               onClick={(e) => {
                 setState({ ...state, showAddTask: false });
               }}

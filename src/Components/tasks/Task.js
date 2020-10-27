@@ -114,7 +114,6 @@ const Task = ({ task, setShowSnackbar, setLastArchivedTask }) => {
       .get()
       .then((snapshot) => {
         if (snapshot.docs.length === 0) {
-          return console.log("no comments associated with this task");
         } else {
           let batch = db.batch();
           snapshot.forEach((doc) => batch.delete(doc.ref));

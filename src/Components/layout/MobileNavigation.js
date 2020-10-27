@@ -15,8 +15,8 @@ import { useSelectedProjectValue } from "../../Context/index";
 import { collatedTasksExist } from "../../Helpers";
 
 export const MobileNavigation = () => {
-  const { setSelectedProject } = useSelectedProjectValue();
-  const { selectedProject } = useSelectedProjectValue();
+  const { selectedProject, setSelectedProject } = useSelectedProjectValue();
+
   const [open, setOpen] = useState(false);
 
   const toggleDrawer = (open) => {

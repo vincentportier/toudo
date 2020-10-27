@@ -127,7 +127,6 @@ export const ProjectSettingsMenu = ({
       .get()
       .then((snapshot) => {
         if (snapshot.docs.length === 0) {
-          return console.log("no tasks associated with this project");
         } else {
           let batch = db.batch();
           snapshot.forEach((doc) => {

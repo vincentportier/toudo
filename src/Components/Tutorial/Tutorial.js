@@ -2,7 +2,6 @@ import React, { useState, useLayoutEffect } from "react";
 import Dialog from "@material-ui/core/Dialog";
 import makeStyles from "@material-ui/core/styles/makeStyles";
 import { tutorialOptions } from "../../Constants/index";
-import { useAuthValue } from "../../Context";
 
 const useStyles = makeStyles({
   content__optionButtonsContainer: {
