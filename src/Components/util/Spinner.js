@@ -1,6 +1,7 @@
 import React from "react";
 import { makeStyles } from "@material-ui/core/styles";
 import CircularProgress from "@material-ui/core/CircularProgress";
+import logo from "../../Assets/logo_large.png";
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -32,7 +33,7 @@ export const Spinner = () => {
   return (
     <div className={classes.root}>
       <div className={classes.spinner__container}>
-        <img src="Images/logo_large.svg" className={classes.logo} alt="logo" />
+        <img src={logo} className={classes.logo} alt="logo" />
         <CircularProgress className={classes.spinner} />
       </div>
     </div>

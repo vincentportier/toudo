@@ -19,8 +19,10 @@ import { useTasks, useSortTasks } from "../../Hooks/index";
 import { useSelectedProjectValue } from "../../Context";
 
 const Tasks = () => {
+  //hook calls
   const { selectedProject } = useSelectedProjectValue();
   const { tasks, isLoading } = useTasks(selectedProject);
+
   const [state, setState] = useState({
     anchor: null,
   });
@@ -31,7 +33,6 @@ const Tasks = () => {
     date: false,
     priority: false,
   });
-
   const { overdueTasks } = useSortTasks(tasks, orderBy);
 
   const handleReschedule = (date) => {

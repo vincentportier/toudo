@@ -1,8 +1,11 @@
 import React, { createContext, useContext } from "react";
 import PropTypes from "prop-types";
+
+//hooks
 import { useProjects } from "../Hooks/index";
 
 export const ProjectsContext = createContext();
+
 export const ProjectsProvider = ({ children }) => {
   const { projects, setProjects } = useProjects();
 

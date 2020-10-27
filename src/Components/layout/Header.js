@@ -83,7 +83,7 @@ export const Header = () => {
           <div className="top-bar__logo">
             <img
               src="/images/logo.png"
-              alt="todoist logo"
+              alt="toudo logo"
               onClick={() => setSelectedProject("INBOX")}
             />
           </div>

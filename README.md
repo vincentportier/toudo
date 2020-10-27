@@ -1,68 +1,56 @@
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+# TOUDO
 
-## Available Scripts
+Todou is a to do list app inspired by Todoist. This project was created with React, Context, Hooks and Firebase.
 
-In the project directory, you can run:
+🚀 Check live version: [TOUDOU](https://toudo.netlify.app/)
 
-### `npm start`
+### Desktop preview:
 
-Runs the app in the development mode.<br />
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+![Toudo gif demo](https://firebasestorage.googleapis.com/v0/b/todoist-clone-b8b9b.appspot.com/o/addTaskInProject.gif?alt=media&token=1cb077df-89bc-4f29-9a1f-3095ef1f3306 "Toudo gif demo")
 
-The page will reload if you make edits.<br />
-You will also see any lint errors in the console.
+### mobile preview:
 
-### `npm test`
+![Toudo gif demo](https://firebasestorage.googleapis.com/v0/b/todoist-clone-b8b9b.appspot.com/o/createProject.gif?alt=media&token=b0e63b8e-902c-4ec0-9c79-85b053b2bfde "Toudo gif demo")
+![Toudo gif demo](https://firebasestorage.googleapis.com/v0/b/todoist-clone-b8b9b.appspot.com/o/upcomingTasks.gif?alt=media&token=47db6ad6-5e4d-408b-8f17-0a2332825db9 "Toudo gif demo")
 
-Launches the test runner in the interactive watch mode.<br />
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+### Dependencies:
 
-### `npm run build`
+- Firebase
+- React-router
+- Moment.js
+- Material-ui (core / icons / pickers)
+- Deployed on Netlify
 
-Builds the app for production to the `build` folder.<br />
-It correctly bundles React in production mode and optimizes the build for the best performance.
+## ⚡ Features:
 
-The build is minified and the filenames include the hashes.<br />
-Your app is ready to be deployed!
+### 🧍‍♀️🧍‍♂️ Users
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+- User authentication with Firebase with forgot password email reset
+- Tutorial on first login
+- Persisting your tasks and projects using firebase firestore
 
-### `npm run eject`
+### ✔ Tasks
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+- Adding a task (with option to set a due date, a priority and a project)
+- Sorting tasks by date/priority
+- Marking a task as completed
+- Displaying your completed tasks with the option to restore/delete them
+- Editing an existing task
+- Commenting on a task
+- Transfering a task to a different folder
+- Duplicating a task
+- Deleting a task
+- Quick Add Task dialog from Navbar
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+### 📂 Projects
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
+- Creating project folders
+- Editing your existing project folders
+- Deleting a project and associated tasks
 
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
+### 🖥 Views
 
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/code-splitting
-
-### Analyzing the Bundle Size
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size
-
-### Making a Progressive Web App
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app
-
-### Advanced Configuration
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/advanced-configuration
-
-### Deployment
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/deployment
-
-### `npm run build` fails to minify
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify
+- An Inbox view where new tasks go by default if no other project is selected
+- A Today view listing your tasks for the day (when a date was set and is matching the current date)
+- An upcoming view listing all your tasks for the year to come
+- A view for each of the projects you created

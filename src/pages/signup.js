@@ -1,9 +1,12 @@
 import React, { useState } from "react";
-
+import logo from "../Assets/logo_large.png";
+//router
 import { Link } from "react-router-dom";
+import { useHistory } from "react-router-dom";
+
+//firebase
 import firebase from "firebase/app";
 import { db, auth } from "../firebase";
-import { useHistory } from "react-router-dom";
 
 //Material UI stuff
 import TextField from "@material-ui/core/TextField";
@@ -85,7 +88,7 @@ export const Signup = () => {
   return (
     <div className="authForm">
       <div className="authForm__container">
-        <img src="Images/logo_large.svg" alt="logo" /> <h1>Signup</h1>
+        <img src={logo} alt="logo" /> <h1>Signup</h1>
         <form onSubmit={handleSubmit}>
           <label htmlFor="email" className="authForm__label">
             Email

@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-
+import logo from "../Assets/logo_large.png";
 //React router
 import { Link } from "react-router-dom";
 //Firebase
@@ -52,13 +52,13 @@ export const ForgotPassword = () => {
   return (
     <div className="authForm">
       <div className="authForm__container">
-        <img src="Images/logo_large.svg" alt="logo" />
+        <img src={logo} alt="logo" />
         <h2>Forgot your password ?</h2>
         {!showConfirmationMessage ? (
           <>
             <br />
             <p className="authForm__text">
-              Please enter the email address linked to your Todoist account to
+              Please enter the email address linked to your Toudo account to
               reset your password.
             </p>
             <br />

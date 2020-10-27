@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-
+import logo from "../Assets/logo_large.png";
 //router
 import { Link } from "react-router-dom";
 
@@ -54,7 +54,7 @@ export const Login = () => {
   return (
     <div className="authForm">
       <div className="authForm__container">
-        <img src="Images/logo_large.svg" alt="logo" /> <h1>Login</h1>
+        <img src={logo} alt="logo" /> <h1>Login</h1>
         <form noValidate onSubmit={handleSubmit}>
           <label htmlFor="email" className="authForm__label">
             Email
