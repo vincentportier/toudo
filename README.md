@@ -1,6 +1,6 @@
-# <center>TOUDOU</center>
+# <center>TOUDO</center>
 
-Todou is a to do list app inspired by Todoist. This project was created with React and Firebase. This app was made for training purposes only and is not affiliated with Todoist.
+Toudo is a to do list app inspired by Todoist. This project was created with React and Firebase. This app was made for training purposes only and is not affiliated with Todoist.
 
 🚀 Check live version: [TOUDOU](https://toudo.netlify.app/)
 
