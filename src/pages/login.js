@@ -15,8 +15,8 @@ import { validateLoginData } from "../Helpers/validators";
 
 export const Login = () => {
   const [state, setState] = useState({
-    email: "",
-    password: "",
+    email: "demoAccount@toudo.com",
+    password: "demopassword",
     errors: {},
   });
 
